@@ -5,22 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a30ed4c3-4803-4934-8f0a-dc2099276b6d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/FMODGWO.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ArchiveManager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CandidateSelector.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Evaluator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GreyWolf.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PerturbationHandler.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Population.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/StructureMetrics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visualise.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/.Trash-0/files/MODTSAmultiobj_results.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/.Trash-0/files/Untitled.ipynb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/.Trash-0/files/iter38" beforeDir="false" />
