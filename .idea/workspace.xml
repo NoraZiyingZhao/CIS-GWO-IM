@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a30ed4c3-4803-4934-8f0a-dc2099276b6d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/FMODGWO.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ArchiveManager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CandidateSelector.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Evaluator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GreyWolf.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PerturbationHandler.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Population.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StructureMetrics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visualise.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/.Trash-0/files/MODTSAmultiobj_results.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/.Trash-0/files/Untitled.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/.Trash-0/files/iter38" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/.Trash-0/files/nohup 1.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/.Trash-0/files/nohup.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/.Trash-0/files/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/.Trash-0/info/MODTSAmultiobj_results.xlsx.trashinfo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/.Trash-0/info/Untitled.ipynb.trashinfo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/.Trash-0/info/iter38.trashinfo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/.Trash-0/info/nohup 1.out.trashinfo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/.Trash-0/info/nohup.out.trashinfo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/.Trash-0/info/test.py.trashinfo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/.ipynb_checkpoints/do-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.idea/Paper2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.ipynb_checkpoints/HV-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.ipynb_checkpoints/MODTSA-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.ipynb_checkpoints/Save_Visualize-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.ipynb_checkpoints/communitydetection-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.ipynb_checkpoints/do-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.ipynb_checkpoints/draw-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.ipynb_checkpoints/influencediffusion-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.ipynb_checkpoints/initialization-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.ipynb_checkpoints/main-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.ipynb_checkpoints/paretosolution-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.ipynb_checkpoints/parsecommunity-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.ipynb_checkpoints/plot_figures-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.ipynb_checkpoints/preference-distribution-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.ipynb_checkpoints/preference_vector-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/.ipynb_checkpoints/readme-dataset-checkpoint" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/CVRP-DTSA/cvrpDTSA.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/CVRP-DTSA/opt2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/HV.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/MODTSA.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/Save_Visualize.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/SeedGeneration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/baseline/CELF.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/baseline/ClosenessCentr.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/baseline/DegreeCentr.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/baseline/DegreeDiscountPara.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/baseline/EccentricCentr.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/baseline/NSGA_III.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/baseline/NewDiscount.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/baseline/PageRankCentr.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/baseline/RANDOM.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/baseline/RIS.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/baseline/TSA.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/baseline/degree.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/baseline/degreeDiscount.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/baseline/newGreedyIC.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/baseline/priorityQueue.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/code explanaion" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/communitydetection.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/datasets/Wiki-Vote.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/datasets/email-Eu-core-department-labels.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/datasets/email-Eu-core.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/datasets/email_node_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/datasets/facebook_combined.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/datasets/facebook_node_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/datasets/lastfm_asia_edges.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/datasets/lastfm_asia_features.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/datasets/lastfm_asia_target.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/datasets/old-email_node_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/datasets/wiki_node_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/do.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/draw.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/email-MODTSAmultiobj_results.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_0_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_0_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_0all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_1_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_1_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_1all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_2_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_2_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_2all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_3_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_3_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_3all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_4_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_4_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_4all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_5_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_5_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_5all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_6_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_6_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_6all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_7_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_7_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_7all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_8_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_8_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_8all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_9_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_9_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/MOP-colab-email/run_9all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/communityinfo-email/Distribution of Cosine Similarity Values.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/communityinfo-email/all_communities.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/communityinfo-email/community_0_nodes_65.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/communityinfo-email/community_1_nodes_149.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/communityinfo-email/community_2_nodes_96.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/communityinfo-email/community_3_nodes_257.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/communityinfo-email/community_4_nodes_108.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/communityinfo-email/community_5_nodes_182.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/communityinfo-email/community_6_nodes_56.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/communityinfo-email/community_7_nodes_73.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/communityinfo-email/louvain_clusters_info.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/communityinfo-email/mapped_node_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/communityinfo-email/mapped_nodes_edges.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/communityinfo-email/original_network.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/random_singleobj_results.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/singleobj-results/.ipynb_checkpoints/run_0all_runs_results1-checkpoint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/singleobj-results/.ipynb_checkpoints/run_0all_solutions2-checkpoint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/singleobj-results/.ipynb_checkpoints/run_1all_runs_results1-checkpoint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/singleobj-results/MODTSA_singleobj_results.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/singleobj-results/run_0all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/singleobj-results/run_0all_solutions2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/email-results-new/singleobj-results/run_1all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_MODTSAmultiobj_results.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_0_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_0_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_0all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_1_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_1_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_1all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_2_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_2_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_2all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_3_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_3_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_3all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_4_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_4_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_4all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_5_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_5_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_5all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_6_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_6_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_6all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_7_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_7_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_7all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_8_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_8_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_8all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_9_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_9_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/colab-MOP-facebook/facebook_run_9all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/Distribution of Cosine Similarity Values.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/all_communities.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/community_0_nodes_354.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/community_10_nodes_237.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/community_11_nodes_25.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/community_12_nodes_61.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/community_13_nodes_206.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/community_14_nodes_226.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/community_15_nodes_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/community_1_nodes_430.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/community_2_nodes_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/community_3_nodes_423.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/community_4_nodes_535.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/community_5_nodes_323.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/community_6_nodes_128.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/community_7_nodes_432.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/community_8_nodes_548.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/community_9_nodes_73.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/louvain_clusters_info.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/mapped_node_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/mapped_nodes_edges.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/communityinfo-facebook/original_network.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/.ipynb_checkpoints/run_0_all_runs_results1-checkpoint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/.ipynb_checkpoints/run_1_all_runs_results1-checkpoint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/.ipynb_checkpoints/run_2_all_runs_results1-checkpoint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/.ipynb_checkpoints/run_3_all_runs_results1-checkpoint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/.ipynb_checkpoints/run_9_all_runs_results1-checkpoint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/1-3MODTSAmultiobj_results3.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/5-8MODTSAmultiobj_results2.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/9run-MODTSAmultiobj_results.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run0-9MODTSA-facebook-iter50pop20seed5.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_0_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_0_all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_0_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_1_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_1_all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_1_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_2_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_2_all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_2_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_3_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_3_all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_3_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_5_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_5_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_6_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_6_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_7_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_7_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_8_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_8_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_9_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_9_all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/iter50pop20seed5tsa/run_9_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/facebook-result-new/random_singleobj_results.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/influencediffusion.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/initialization.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/loadfile/load_JSON.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/loadfile/load_csv.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/loadfile/load_email_dataset.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/loadfile/load_txt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/Wiki-split_community.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/dataset_degree.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/draw_cluster.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/email-results-old/clusters_info.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/email-results-old/dbscan_clusters.eps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/email-results-old/dbscan_clusters.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/email-results-old/elbow_method.eps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/email-results-old/elbow_method.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/email-results-old/preference_vector.eps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/email-results-old/preference_vector.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/email-split_community.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/eps_determine.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/facebook-results-old/clusters_info.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/facebook-results-old/dbscan_clusters.eps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/facebook-results-old/dbscan_clusters.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/facebook-results-old/elbow_method.eps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/facebook-results-old/elbow_method.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/facebook-split_community.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/nodedelete.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/old-loop-DTSA.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/preference_create.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/preference_diagram.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/seedgeneration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/wiki-results-old/clusters_info.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/wiki-results-old/dbscan_clusters.eps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/wiki-results-old/dbscan_clusters.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/wiki-results-old/elbow_method.eps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/wiki-results-old/elbow_method.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/wiki-results-old/preference_vector.eps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/old/wiki-results-old/preference_vector.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/paretosolution.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/parsecommunity.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/plot_figures.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/preference-distribution.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/preference_vector.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/readme-dataset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/subgraph/subgraphmain.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/subgraph/subgraphselection.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/communityinfo-wiki/Distribution of Cosine Similarity Values.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/communityinfo-wiki/all_communities.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/communityinfo-wiki/community_13_nodes_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/communityinfo-wiki/community_20_nodes_36.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/communityinfo-wiki/community_2_nodes_1835.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/communityinfo-wiki/community_4_nodes_1443.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/communityinfo-wiki/community_5_nodes_2237.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/communityinfo-wiki/community_9_nodes_1510.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/communityinfo-wiki/louvain_clusters_info.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/communityinfo-wiki/mapped_node_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/communityinfo-wiki/mapped_nodes_edges.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/communityinfo-wiki/original_network.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_MODTSAmultiobj_results.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_0_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_0_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_0all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_1_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_1_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_1all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_2_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_2_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_2all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_3_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_3_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_3all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_4_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_4_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_4all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_5_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_5_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_5all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_6_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_6_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_6all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_7_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_7_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_7all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_8_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_8_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_8all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_9_HV.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_9_pareto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/mop-colab-wiki/wiki_run_9all_runs_results1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/Paper2/wiki-results-new/random_singleobj_results.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Paper2-master/Paper2-master/do.ipynb" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2w1OVrMxdSxuwXazfDTeIDWb3Ep" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="FMODGWO" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-d68999036c7f-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.14475.56" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a30ed4c3-4803-4934-8f0a-dc2099276b6d" name="Changes" comment="" />
+      <created>1745205639469</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1745205639469</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
