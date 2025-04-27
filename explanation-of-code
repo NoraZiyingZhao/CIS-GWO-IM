@@ -1,0 +1,4 @@
+Datasets: (imported in main.py)
+all the datasets are derived from the code of Paper2 project.
+The mapped txt file includes nodes info and edges info without self-loop.
+
