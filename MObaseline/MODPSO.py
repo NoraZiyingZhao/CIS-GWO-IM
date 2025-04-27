@@ -9,6 +9,7 @@ import random
 import influencediffusion as im
 import paretosolution as ps
 import HV as hv
+from ArchiveManager import *
 import time
 from copy import deepcopy
 
