@@ -23,7 +23,7 @@ from LeaderManager import *
 from StructureMetrics import *
 import time
 
-class FMODGWO:
+class StratifiedFMODGWO:
     """
     FMODGWO: Fairness-aware Multi-Objective Grey Wolf Optimizer
     针对双目标最大化问题（如扩散性与公平性）的多目标灰狼优化算法。
@@ -99,6 +99,35 @@ class FMODGWO:
             wolf.Cost = self.evaluator.evaluate(wolf.Position)
             # 将该个体添加到种群中
             self.population.append(wolf)
+    def stratified_sample(self, candidate_nodes, degree_dict, sample_size=200):
+        """
+        对candidate_nodes按degree分层采样。
+
+        candidate_nodes: list of node ids
+        degree_dict: dict of {node: degree}
+        sample_size: 总采样数量
+        """
+
+        # 分层
+        low_degree = [node for node in candidate_nodes if degree_dict[node] <= 10]
+        mid_degree = [node for node in candidate_nodes if 10 < degree_dict[node] <= 30]
+        high_degree = [node for node in candidate_nodes if degree_dict[node] > 30]
+
+        # 每层采样比例（你可以微调，比如高层多采一点）
+        low_num = int(0.4 * sample_size)  # 低度节点占40%
+        mid_num = int(0.4 * sample_size)  # 中度节点占40%
+        high_num = sample_size - low_num - mid_num  # 剩下给高度节点
+
+        # 采样
+        sampled = []
+        if low_degree:
+            sampled += random.sample(low_degree, min(low_num, len(low_degree)))
+        if mid_degree:
+            sampled += random.sample(mid_degree, min(mid_num, len(mid_degree)))
+        if high_degree:
+            sampled += random.sample(high_degree, min(high_num, len(high_degree)))
+
+        return sampled
 
     def optimize(self, max_iter):
         """
@@ -138,13 +167,23 @@ class FMODGWO:
                     forbidden_nodes = base | wolf.Position
                     candidate_nodes = list(all_nodes - forbidden_nodes)
                     # 使用 score() 函数为候选节点打分（小closeness + 大degree优先）
-                    # 为所有候选节点打分
-                    scores = []
-                    for node in candidate_nodes:
-                        score = self.StructureMetrics.score(node, t, max_iter, transition_point)
-                        scores.append((node, score))
-                    scores.sort(key=lambda x: x[1], reverse=True)
-                    candidate_nodes = [node for node, _ in scores]
+                    if candidate_nodes:
+                        sample_size = min(200, len(candidate_nodes))
+                        sampled_nodes = self.stratified_sample(candidate_nodes, self.StructureMetrics.degree, sample_size)
+
+                        scores = []
+                        for node in sampled_nodes:
+                            score = self.StructureMetrics.score(node, t, max_iter, transition_point)
+                            scores.append((node, score))
+                        scores.sort(key=lambda x: x[1], reverse=True)
+                        candidate_nodes = [node for node, _ in scores]
+                    # # 为所有候选节点打分
+                    # scores = []
+                    # for node in candidate_nodes:
+                    #     score = self.StructureMetrics.score(node, t, max_iter, transition_point)
+                    #     scores.append((node, score))
+                    # scores.sort(key=lambda x: x[1], reverse=True)
+                    # candidate_nodes = [node for node, _ in scores]
 
                     needed = self.budget - len(base)
                     new_nodes = set(candidate_nodes[:needed])
@@ -163,18 +202,33 @@ class FMODGWO:
                     # 综合1阶和2阶邻居
                     candidate_nodes = (leader_nodes | first_neighbors | second_neighbors) - base - wolf.Position
                     candidate_nodes = list(candidate_nodes)
-                    needed = self.budget - len(base)
-                    if len(candidate_nodes) <= needed:
-                        new_nodes = set(candidate_nodes)
-                    else:
-                        # 用score函数对local候选节点打分（小closeness + 大degree优先）
+                    if candidate_nodes:
+                        sample_size = min(500, len(candidate_nodes))
+                        sampled_nodes = self.stratified_sample(candidate_nodes, self.StructureMetrics.degree, sample_size)
+
                         scores = []
-                        for node in candidate_nodes:
+                        for node in sampled_nodes:
                             score = self.StructureMetrics.score(node, t, max_iter, transition_point)
                             scores.append((node, score))
                         scores.sort(key=lambda x: x[1], reverse=True)
                         candidate_nodes = [node for node, _ in scores]
+                    needed = self.budget - len(base)
+                    if len(candidate_nodes) <= needed:
+                        new_nodes = set(candidate_nodes)
+                    else:
                         new_nodes = set(candidate_nodes[:needed])
+                    # needed = self.budget - len(base)
+                    # if len(candidate_nodes) <= needed:
+                    #     new_nodes = set(candidate_nodes)
+                    # else:
+                    #     # 用score函数对local候选节点打分（小closeness + 大degree优先）
+                    #     scores = []
+                    #     for node in candidate_nodes:
+                    #         score = self.StructureMetrics.score(node, t, max_iter, transition_point)
+                    #         scores.append((node, score))
+                    #     scores.sort(key=lambda x: x[1], reverse=True)
+                    #     candidate_nodes = [node for node, _ in scores]
+                    #     new_nodes = set(candidate_nodes[:needed])
                 # 合成新的位置
                 new_position = base | new_nodes
 
@@ -203,4 +257,6 @@ class FMODGWO:
         print("time=",times)
 
         return self.archive_mgr.archive, archive_costs_history,  hv_values, times
+
+
 

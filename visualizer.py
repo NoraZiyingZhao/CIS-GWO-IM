@@ -10,7 +10,7 @@ class Visualizer:
 
     def save_and_plot_multiobj(self, all_runs_results, algo_name='Algorithm'):
         """
-        保存数据并绘制图像（适用于多目标优化算法，如FMODGWO等）
+        保存数据并绘制图像（适用于多目标优化算法，如FMODGWO）
         all_runs_results: List[Dict], 每个 run 的结果（带 final_archive, hv_values, times）
         algo_name: 算法名称（用于区分保存文件）
         """
@@ -27,9 +27,14 @@ class Visualizer:
             all_times.append(result['times'])            # 每次 run 的时间记录
             all_final_hv.append(result['hv_values'][-1]) # 每次 run 的最后一代HV
 
-            # final_archive 是 [(fitness1, fitness2)] 的列表
-            for cost in result['final_archive']:
-                all_final_costs.append([run_idx + 1, cost[0], cost[1]])
+            # final_archive 是 [GreyWolf对象, GreyWolf对象, ...]
+            for wolf in result['final_archive']:
+                if hasattr(wolf, 'Cost') and isinstance(wolf.Cost, (list, tuple)):
+                    all_final_costs.append([
+                        run_idx + 1,
+                        wolf.Cost[0],  # Spread
+                        wolf.Cost[1]   # Fairness
+                    ])
 
         # === 保存 Excel 文件 ===
         hv_df = pd.DataFrame(all_hv_curves).T
@@ -53,22 +58,20 @@ class Visualizer:
 
     def save_and_plot_singleobj(self, all_runs_results, algo_name='Algorithm'):
         """
-        保存数据并绘制图像（适用于单目标优化算法，如degree、random等）
-        all_runs_results: List[Dict], 每个 run 的结果（仅有final_solutions）
+        保存数据并绘制图像（适用于单目标优化算法，如Degree、Random等）
+        all_runs_results: List[Dict], 每个 run 的结果（final_solutions）
         """
         runs = len(all_runs_results)
-        all_final_spreads = []  # 这里只关心final_spread
+        all_final_spreads = []  # 这里只关心spread
 
         for run_idx, result in enumerate(all_runs_results):
             for sol in result['final_solutions']:
                 spread_value = sol[1]  # (seed_set, spread_value, time)
                 all_final_spreads.append(spread_value)
 
-        # 保存 spread 到 Excel
         spread_df = pd.DataFrame({'Run': np.arange(1, len(all_final_spreads)+1), 'Spread': all_final_spreads})
         spread_df.to_excel(os.path.join(self.save_dir, f'{algo_name}_spread_values.xlsx'), index=False)
 
-        # 绘制 spread boxplot
         plt.figure(figsize=(8, 6))
         plt.boxplot(all_final_spreads, labels=[algo_name])
         plt.ylabel('Spread')

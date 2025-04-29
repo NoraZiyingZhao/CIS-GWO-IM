@@ -1,17 +1,17 @@
 import networkx as nx
 import pandas as pd
 import os
-
 import EvaluationMetricsPlot
 from GreyWolf import *
 from ArchiveManager import *
 from Evaluator import *
 from PerturbationHandler import *
 from StructureMetrics import *
-from FMODGWO import *
-from MObaseline import MODBA, MODPSO  # 多目标基线
-from MObaseline.GFMOGWOpackage import GFMOGWO
-from baseline import CELF, degree, RANDOM, pagerank, ClosenessCentr, betweennesscentr, eigenvectorcentr  # 单目标基线
+# from FMODGWO import *
+from StratifiedFMODGWO import *
+# from MObaseline import MODBA, MODPSO  # 多目标基线
+# from MObaseline.GFMOGWOpackage import GFMOGWO
+# from baseline import CELF, degree, RANDOM, pagerank, ClosenessCentr, betweennesscentr, eigenvectorcentr  # 单目标基线
 from visualizer import Visualizer
 
 def extract_fitness(archive):
@@ -33,10 +33,10 @@ def main():
     budget_ratio = 0.01  # 1%
     budget = max(5, int(graph.number_of_nodes() * budget_ratio))
     print("Budget =", budget)
-    pop_size = 100
-    archive_size = 30
-    max_iter = 100
-    runs = 10
+    pop_size = 30
+    archive_size = 10
+    max_iter = 10
+    runs = 2
 
     # === Step 3: Precompute Structural Metrics ===
     metrics = StructureMetrics(graph)
@@ -49,6 +49,7 @@ def main():
 
     # === Step 5: Initialize Results Containers ===
     all_runs_fmodgwo = []
+    all_runs_StratifiedFMODGWO=[]
     all_runs_modba = []
     all_runs_modpso = []
     all_runs_gfmogwo=[]
@@ -65,16 +66,27 @@ def main():
     for run_idx in range(runs):
         print(f'Run {run_idx + 1}/{runs}')
 
-        # --- 多目标算法1: FMODGWO ---
-        optimizer = FMODGWO(graph, metrics, budget, pop_size, archive_size)
+
+        optimizer = StratifiedFMODGWO(graph, metrics, budget, pop_size, archive_size)
         archive, archive_costs_history, hv_values, times = optimizer.optimize(max_iter)
-        run_result_fmodgwo = {
+        run_result_StratifiedFMODGWO = {
             "final_archive": archive,
             "archive_costs_history": archive_costs_history,
             "hv_values": hv_values,
             "times": times
         }
-        all_runs_fmodgwo.append(run_result_fmodgwo)
+        all_runs_StratifiedFMODGWO.append(run_result_StratifiedFMODGWO)
+        print("solution of StratifiedFMODGWO: (all_runs_StratifiedFMODGWO)", all_runs_StratifiedFMODGWO)
+        # --- 多目标算法1: FMODGWO ---
+        # optimizer = FMODGWO(graph, metrics, budget, pop_size, archive_size)
+        # archive, archive_costs_history, hv_values, times = optimizer.optimize(max_iter)
+        # run_result_fmodgwo = {
+        #     "final_archive": archive,
+        #     "archive_costs_history": archive_costs_history,
+        #     "hv_values": hv_values,
+        #     "times": times
+        # }
+        # all_runs_fmodgwo.append(run_result_fmodgwo)
 
         # # --- 多目标算法2: MODBA ---
         # optimizer_modba = MODBA(graph, metrics, budget, pop_size, archive_size)
@@ -130,7 +142,7 @@ def main():
     visualizer_multi = Visualizer(save_dir_multi)
 
     # 保存 FMODGWO 多目标结果
-    visualizer_multi.save_and_plot_multiobj(all_runs_fmodgwo, algo_name='FMODGWO')
+    visualizer_multi.save_and_plot_multiobj(all_runs_StratifiedFMODGWO, algo_name='StratifiedFMODGWO')
 
     # 保存 MODBA 多目标结果
     # visualizer_multi.save_and_plot_multiobj(all_runs_modba, algo_name='MODBA')
@@ -170,38 +182,38 @@ def main():
 
     # === Step 9: Draw IGD Plots ===
     # 注意！！下面正式生成 IGD 分析
-    all_algorithms_solutions = []
-
-    # 收集所有算法最终的 Pareto 解（比如 fmodgwo，modba，modpso，gfmogwo）
-    for result in all_runs_fmodgwo:
-        solutions = np.array([[sol[0], sol[1]] for sol in result["final_archive"]])
-        all_algorithms_solutions.append(solutions)
-
-    # 后续其他算法加进去
-    # for result in all_runs_modba: ...
-
-    true_pareto = EvaluationMetricsPlot.generate_true_pareto_front(all_algorithms_solutions)
-
-    # 计算每个算法每个run的IGD
-    igd_results = {}
-
-    igd_per_run_fmodgwo = []
-    for result in all_runs_fmodgwo:
-        solutions = np.array([[sol[0], sol[1]] for sol in result["final_archive"]])
-        igd = EvaluationMetricsPlot.calculate_igd(solutions, true_pareto)
-        igd_per_run_fmodgwo.append(igd)
-    igd_results['FMODGWO'] = igd_per_run_fmodgwo
-
-    # 后续可以继续加
-    # igd_results['MODBA'] = ...
-    # igd_results['MODPSO'] = ...
-    # igd_results['GFMOGWO'] = ...
-
-    # 绘制IGD图
-    EvaluationMetricsPlot.plot_igd_per_run(igd_results, save_dir_multi, 'igd_comparison_per_run')
-    EvaluationMetricsPlot.plot_igd_boxplot(igd_results, save_dir_multi, 'igd_comparison_boxplot')
-
-    print("✅ All experiments finished and results saved.")
+    # all_algorithms_solutions = []
+    #
+    # # 收集所有算法最终的 Pareto 解（比如 fmodgwo，modba，modpso，gfmogwo）
+    # for result in all_runs_fmodgwo:
+    #     solutions = np.array([[sol[0], sol[1]] for sol in result["final_archive"]])
+    #     all_algorithms_solutions.append(solutions)
+    #
+    # # 后续其他算法加进去
+    # # for result in all_runs_modba: ...
+    #
+    # true_pareto = EvaluationMetricsPlot.generate_true_pareto_front(all_algorithms_solutions)
+    #
+    # # 计算每个算法每个run的IGD
+    # igd_results = {}
+    #
+    # igd_per_run_fmodgwo = []
+    # for result in all_runs_fmodgwo:
+    #     solutions = np.array([[sol[0], sol[1]] for sol in result["final_archive"]])
+    #     igd = EvaluationMetricsPlot.calculate_igd(solutions, true_pareto)
+    #     igd_per_run_fmodgwo.append(igd)
+    # igd_results['FMODGWO'] = igd_per_run_fmodgwo
+    #
+    # # 后续可以继续加
+    # # igd_results['MODBA'] = ...
+    # # igd_results['MODPSO'] = ...
+    # # igd_results['GFMOGWO'] = ...
+    #
+    # # 绘制IGD图
+    # EvaluationMetricsPlot.plot_igd_per_run(igd_results, save_dir_multi, 'igd_comparison_per_run')
+    # EvaluationMetricsPlot.plot_igd_boxplot(igd_results, save_dir_multi, 'igd_comparison_boxplot')
+    #
+    # print("✅ All experiments finished and results saved.")
 
 
 '''

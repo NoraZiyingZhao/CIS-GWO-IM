@@ -31,18 +31,18 @@ class Evaluator:
         for _ in range(self.simulations):
             local_counts = {node: [0] * self.num_information for node in self.graph.nodes()}
             for info_index in range(self.num_information):
-                new_active = S[:]
+                new_active = set(S)  # make sure new_active is a set
                 activated_nodes = set(S)
                 step = 0
 
                 while new_active and step < max_steps:
-                    next_active = []
+                    next_active = set()
                     for node in new_active:
                         for neighbor in self.graph.neighbors(node):
                             if neighbor not in activated_nodes:
                                 prob = self.reductionp()
                                 if random.random() < prob:
-                                    next_active.append(neighbor)
+                                    next_active.add(neighbor)
                                     activated_nodes.add(neighbor)
                                     local_counts[neighbor][info_index] += 1
                     new_active = next_active
@@ -66,6 +66,6 @@ class Evaluator:
         spread = activated_nodes / self.total_nodes
 
         # 目标2：公平性（占位）
-        fairness = 0.0
+        fairness = 0.5
 
         return spread, fairness

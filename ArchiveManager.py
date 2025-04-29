@@ -11,16 +11,16 @@ class ArchiveManager:
         self.fronts = []       # 所有层次fronts
         self.archive_size = archive_size
 
-    def dominates(self, fitness1, fitness2):
-        """判断fitness1是否支配fitness2（双目标最大化）"""
-        return (fitness1[0] >= fitness2[0] and fitness1[1] >= fitness2[1]) and \
-               (fitness1[0] > fitness2[0] or fitness1[1] > fitness2[1])
+    def dominates(self, wolf1, wolf2):
+        """判断wolf1是否支配wolf2（双目标最大化）"""
+        return (wolf1.Cost[0] >= wolf2.Cost[0] and wolf1.Cost[1] >= wolf2.Cost[1]) and \
+               (wolf1.Cost[0] > wolf2.Cost[0] or wolf1.Cost[1] > wolf2.Cost[1])
 
     def update(self, wolves):
         """
         快速非支配排序 + 拥挤距离更新 Archive 和 Fronts。
         """
-        new_solutions = [(wolf.Position, wolf.Cost) for wolf in wolves]
+        new_solutions = [wolf for wolf in wolves]
         candidates = self.archive + new_solutions
 
         S = defaultdict(list)
@@ -34,9 +34,9 @@ class ArchiveManager:
             for j, q in enumerate(candidates):
                 if i == j:
                     continue
-                if self.dominates(p[1], q[1]):
+                if self.dominates(p, q):
                     S[i].append(j)
-                elif self.dominates(q[1], p[1]):
+                elif self.dominates(q, p):
                     n[i] += 1
 
             if n[i] == 0:
@@ -55,14 +55,11 @@ class ArchiveManager:
             k += 1
             fronts.append(next_front)
 
-        # 去掉空的最后一层
         if not fronts[-1]:
             fronts.pop()
 
-        # 存储每一层front（以解的内容而不是索引形式）
         self.fronts = [[candidates[i] for i in front] for front in fronts]
 
-        # 只取第一层作为archive（精英集）
         first_front = self.fronts[0]
         if len(first_front) > self.archive_size:
             first_front = self.calculate_crowding_distance(first_front)
@@ -76,24 +73,24 @@ class ArchiveManager:
         distances = [0.0] * num_solutions
 
         for m in range(2):
-            archive.sort(key=lambda x: x[1][m])
+            archive.sort(key=lambda w: w.Cost[m])
             distances[0] = distances[-1] = float('inf')
-            min_m = archive[0][1][m]
-            max_m = archive[-1][1][m]
+            min_m = archive[0].Cost[m]
+            max_m = archive[-1].Cost[m]
             if max_m == min_m:
                 continue
 
             for i in range(1, num_solutions - 1):
-                distances[i] += (archive[i + 1][1][m] - archive[i - 1][1][m]) / (max_m - min_m)
+                distances[i] += (archive[i + 1].Cost[m] - archive[i - 1].Cost[m]) / (max_m - min_m)
 
-        sorted_archive = [x for _, x in sorted(zip(distances, archive), key=lambda pair: pair[0], reverse=True)]
+        sorted_archive = [w for _, w in sorted(zip(distances, archive), key=lambda pair: pair[0], reverse=True)]
         return sorted_archive
 
     def calculate_hypervolume(self, reference_point):
         """计算当前第一层存档的HV（最大化问题）。"""
         hv = 0.0
-        for sol in self.archive:
-            f1, f2 = sol[1]
+        for wolf in self.archive:
+            f1, f2 = wolf.Cost[:2]
             r1, r2 = reference_point
             vol = max(0, f1 - r1) * max(0, f2 - r2)
             hv += vol

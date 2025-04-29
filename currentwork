@@ -1,0 +1,8 @@
+2025.4.29
+
+need to add more functions in visualizer to store the full solutions obtained by the algorithm, such as the final pareto solutions.
+need to add community concept in the whole process, such as the stratify sampling, and the fairness function design.
+need to read new downloaded papers to make sure the innovation of our idea.
+
+now we have a stratifiedFMODGWO, which reduce the complexity of the original one.
+later i will try to add community information to reduce complexity more and improve the fairness performance.

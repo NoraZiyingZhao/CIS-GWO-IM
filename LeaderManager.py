@@ -10,7 +10,7 @@ class LeaderManager:
         pass
 
     def normalize_costs(self, wolves):
-        objs = list(zip(*[w[1][:2] for w in wolves]))  # 提取前两个目标值（Cost）
+        objs = list(zip(*[w.Cost[:2] for w in wolves]))
         norm_objs = []
         for i in range(2):
             min_val = min(objs[i])
@@ -46,17 +46,16 @@ class LeaderManager:
                 candidates = region_map.get(key, [])
                 if not candidates:
                     continue
-                candidates.sort(key=lambda w: (-w[1][0]))  # 传播值最大优先
+                candidates.sort(key=lambda w: -w.Cost[0])
                 selected = candidates[0]
                 if selected not in leaders:
                     leaders.append(selected)
                 if len(leaders) >= 3:
                     break
 
-        # 补充不足的leader（按传播值高补齐）
         if len(leaders) < 3:
             all_candidates = [wolf for front in fronts for wolf in front if wolf not in leaders]
-            all_candidates.sort(key=lambda w: (-w[1][0]))
+            all_candidates.sort(key=lambda w: -w.Cost[0])
             leaders += all_candidates[:3 - len(leaders)]
 
         return leaders[:3]
@@ -69,7 +68,6 @@ class LeaderManager:
             sorted_by_obj1 = sorted(population, key=lambda w: w.Cost[0], reverse=True)
             extra = [w for w in sorted_by_obj1 if w not in archive][:3 - len(archive)]
             archive.extend(extra)
-
 '''
 Front 1 -> spread_zone / fair_zone / middle_zone
 ↓
