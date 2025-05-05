@@ -29,41 +29,39 @@ class StratifiedFMODGWO:
     针对双目标最大化问题（如扩散性与公平性）的多目标灰狼优化算法。
     """
 
-    def __init__(self, graph, structure_metrics, budget, pop_size, archive_size):
+    def __init__(self, graph, structure_metrics, budget, pop_size, archive_size, node_to_comm, total_communities):
         """
-        初始化优化器。
-        :param graph: 输入图（节点与边）
-        :param structure_metrics: 节点结构性指标对象
-        :param budget: 种子集合大小上限
-        :param pop_size: 种群大小（狼的数量）
-        :param archive_size: 存档大小（非支配解集上限）
-        """
+                初始化优化器。
+                :param graph: 输入图（节点与边）
+                :param structure_metrics: 节点结构性指标对象
+                :param budget: 种子集合大小上限
+                :param pop_size: 种群大小（狼的数量）
+                :param archive_size: 存档大小（非支配解集上限）
+                """
         self.graph = graph
         self.StructureMetrics = structure_metrics
         self.budget = budget
         self.pop_size = pop_size
         self.archive_size = archive_size
 
-        # 初始化辅助模块
-        self.evaluator = Evaluator(graph)               # 评估器（传播/公平性目标）
-        # self.selector = CandidateSelector(graph, self.metrics)  # 候选池生成器
-        self.perturb = PerturbationHandler(self.StructureMetrics)        # 扰动器
-        self.archive_mgr = ArchiveManager(self.archive_size)  # 存档管理器
-        self.leader_mgr = LeaderManager()                # 领头狼选择器
+        self.node_to_comm = node_to_comm
+        self.total_communities = total_communities
 
-
-        self.population = []  # 当前狼群
+        self.evaluator = Evaluator(graph, node_to_comm, total_communities)  # ✅ 准备给 evaluator 使用
+        self.perturb = PerturbationHandler(self.StructureMetrics)
+        self.archive_mgr = ArchiveManager(self.archive_size)
+        self.leader_mgr = LeaderManager()
+        self.population = []
 
     def initialize_population(self):
-        # 初始化种群，每只狼表示一个种子集合（Position），其大小等于预算 budget
-        # 获取图中的所有节点
+        # 获取全图节点
         nodes = list(self.graph.nodes())
-        # 按照 degree 从高到低排序
+        # 根据 degree 降序排序
         deg_sorted = sorted(self.StructureMetrics.degree.items(), key=lambda x: x[1], reverse=True)
-        # 取 top 20% 的节点数量（至少1个）作为结构启发候选集的大小
-        top_k = max(1, len(nodes) // 5)  # Top 20% degree nodes
-        # 取出 top_k 个 degree 最大的节点作为启发式候选集合
-        top_nodes = [node for node, _ in deg_sorted[:top_k]]
+
+        # 取前 50% 的高 degree 节点作为“高影响力候选池”
+        half_top_degree = deg_sorted[:len(deg_sorted) // 2]
+        top_nodes_pool = [node for node, _ in half_top_degree]
 
         # 初始化种群列表
         self.population = []
@@ -78,12 +76,12 @@ class StratifiedFMODGWO:
             if i < int(0.5 * self.pop_size):
                 # 50% wolves randomly select from the whole graph
                 selected = set(random.sample(nodes, self.budget))  # 从所有节点中随机采样
-            else:  # 后 50% 的狼从 top degree 节点中选出部分，其余从剩下的节点中补全
+            else:  # 后 50% 的狼从 top degree pool节点中选出部分，其余从剩下的节点中补全
                 # 50% wolves include top degree nodes as part of their seed set
                 # 计算可选的 top 节点数量（最多为 budget）
-                num_top = min(len(top_nodes), self.budget)
-                # 从 top_nodes 中随机选出 1~budget 个节点
-                top_sample = random.sample(top_nodes, k=random.randint(1, num_top))
+                num_top = min(len(top_nodes_pool), self.budget)
+                # 从 top_nodes pool中随机选出 1~budget 个节点
+                top_sample = random.sample(top_nodes_pool, k=random.randint(1, num_top))
                 # 剩余需要随机补充的节点数
                 remaining_budget = self.budget - len(top_sample)
                 # 构建不包含 top_sample 的候选池
@@ -141,7 +139,7 @@ class StratifiedFMODGWO:
         archive_costs_history = []  # 每代的Pareto解Cost
         hv_values = []  # 每代的HV
         times = []  # 每代的时间
-        transition_point = 0.4  # 设定迭代总次数的40%作为算法由“全局探索”阶段向“局部开发”阶段切换的关键节点。
+        transition_point = 0.6  # 设定迭代总次数的40%作为算法由“全局探索”阶段向“局部开发”阶段切换的关键节点。
 
         for t in range(max_iter):
             start_time = time.time()

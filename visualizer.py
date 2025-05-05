@@ -21,35 +21,58 @@ class Visualizer:
         all_times = []
         all_final_hv = []
         all_final_costs = []
+        all_solutions_detailed = []
 
         for run_idx, result in enumerate(all_runs_results):
-            all_hv_curves.append(result['hv_values'])    # 每次 run 的 HV 曲线
-            all_times.append(result['times'])            # 每次 run 的时间记录
-            all_final_hv.append(result['hv_values'][-1]) # 每次 run 的最后一代HV
+            hv_values = result['hv_values']
+            times = result['times']
+            archive = result['final_archive']
 
-            # final_archive 是 [GreyWolf对象, GreyWolf对象, ...]
-            for wolf in result['final_archive']:
-                if hasattr(wolf, 'Cost') and isinstance(wolf.Cost, (list, tuple)):
-                    all_final_costs.append([
-                        run_idx + 1,
-                        wolf.Cost[0],  # Spread
-                        wolf.Cost[1]   # Fairness
-                    ])
+            all_hv_curves.append(hv_values)
+            all_times.append(times)
+
+            final_hv = hv_values[-1]  # ✅ Use precomputed HV from final archive
+            all_final_hv.append(final_hv)
+
+            for sol_idx, wolf in enumerate(archive):
+                cost = getattr(wolf, 'Cost', [None, None])
+                seed_set = getattr(wolf, 'Position', None)
+                all_final_costs.append([run_idx + 1, cost[0], cost[1]])
+                all_solutions_detailed.append({
+                    'Run': run_idx + 1,
+                    'Solution_Index': sol_idx + 1,
+                    'Fitness1_Spread': cost[0],
+                    'Fitness2_Fairness': cost[1],
+                    'Seed_Set': str(seed_set),
+                    'Time': times[-1] if times else None,
+                    'Final_HV': final_hv
+                })
 
         # === 保存 Excel 文件 ===
         hv_df = pd.DataFrame(all_hv_curves).T
+        hv_df.insert(0, 'Iteration', np.arange(hv_df.shape[0]))  # 添加Iteration列
         hv_df.to_excel(os.path.join(self.save_dir, f'{algo_name}_hv_per_iteration.xlsx'), index=False)
 
         times_df = pd.DataFrame(all_times).T
+        times_df.insert(0, 'Iteration', np.arange(times_df.shape[0]))  # 添加Iteration列
         times_df.to_excel(os.path.join(self.save_dir, f'{algo_name}_times_per_iteration.xlsx'), index=False)
 
         final_costs_df = pd.DataFrame(all_final_costs, columns=['Run', 'Fitness1_Spread', 'Fitness2_Fairness'])
-        final_costs_df.to_excel(os.path.join(self.save_dir, f'{algo_name}_final_pareto_costs.xlsx'), index=False)
+        final_costs_df.to_excel(os.path.join(self.save_dir, f'{algo_name}_final_pareto_costs.xlsx'),
+                                index=False)
 
-        final_hv_df = pd.DataFrame({'Run': np.arange(1, runs + 1), 'Final_HV': all_final_hv})
+        final_hv_df = pd.DataFrame({
+            'Run': np.arange(1, len(all_final_hv) + 1),
+            'Final_HV': all_final_hv
+        })
+
         final_hv_df.to_excel(os.path.join(self.save_dir, f'{algo_name}_final_hv_values.xlsx'), index=False)
 
-        # === 绘制图 ===
+        detailed_df = pd.DataFrame(all_solutions_detailed)
+        detailed_df.to_excel(os.path.join(self.save_dir, f'{algo_name}_final_pareto_solutions_detailed.xlsx'),
+                             index=False)
+
+        # === 绘制图像 ===
         self.plot_hv_vs_iteration(hv_df, algo_name)
         self.plot_final_hv_boxplot(all_final_hv, algo_name)
         self.plot_final_pareto_scatter(final_costs_df, algo_name)
@@ -63,14 +86,25 @@ class Visualizer:
         """
         runs = len(all_runs_results)
         all_final_spreads = []  # 这里只关心spread
+        all_solutions = []
 
         for run_idx, result in enumerate(all_runs_results):
-            for sol in result['final_solutions']:
-                spread_value = sol[1]  # (seed_set, spread_value, time)
+            for sol_idx, sol in enumerate(result['final_solutions']):
+                seed_set, spread_value, time_used = sol
                 all_final_spreads.append(spread_value)
+                all_solutions.append({
+                    'Run': run_idx + 1,
+                    'Solution_Index': sol_idx + 1,
+                    'Spread': spread_value,
+                    'Time': time_used,
+                    'Seed_Set': str(seed_set)
+                })
 
-        spread_df = pd.DataFrame({'Run': np.arange(1, len(all_final_spreads)+1), 'Spread': all_final_spreads})
+        spread_df = pd.DataFrame({'Run': np.arange(1, len(all_final_spreads) + 1), 'Spread': all_final_spreads})
         spread_df.to_excel(os.path.join(self.save_dir, f'{algo_name}_spread_values.xlsx'), index=False)
+
+        full_df = pd.DataFrame(all_solutions)
+        full_df.to_excel(os.path.join(self.save_dir, f'{algo_name}_final_solutions.xlsx'), index=False)
 
         plt.figure(figsize=(8, 6))
         plt.boxplot(all_final_spreads, labels=[algo_name])

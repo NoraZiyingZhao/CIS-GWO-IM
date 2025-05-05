@@ -1,24 +1,21 @@
-import networkx as nx
 import pandas as pd
 import os
-import EvaluationMetricsPlot
-from GreyWolf import *
-from ArchiveManager import *
-from Evaluator import *
-from PerturbationHandler import *
-from StructureMetrics import *
+import networkx as nx
+
 # from FMODGWO import *
 from StratifiedFMODGWO import *
-# from MObaseline import MODBA, MODPSO  # 多目标基线
+# from MObaseline import MODBA, MODPSO
 # from MObaseline.GFMOGWOpackage import GFMOGWO
-# from baseline import CELF, degree, RANDOM, pagerank, ClosenessCentr, betweennesscentr, eigenvectorcentr  # 单目标基线
 from visualizer import Visualizer
 
-def extract_fitness(archive):
-    """提取种群中所有解的Cost（目标值）"""
-    return [cost for cost in archive]
-
 def main():
+    # Step1: 加载图
+    # Step2: 设置参数
+    # Step3: 计算图结构特征
+    # Step4: 加载已保存的社区划分
+    # Step5: 初始化并运行算法
+    # Step6: 保存和可视化结果
+
     # === Step 1: Load Dataset ===
     # edges_file = 'datasets/fb-pages-food/community-info-food/mapped_nodes_edges.txt'
     # edges_file = 'datasets/soc-hamsterster/community-info-ham/mapped_nodes_edges.txt'
@@ -33,21 +30,41 @@ def main():
     budget_ratio = 0.01  # 1%
     budget = max(5, int(graph.number_of_nodes() * budget_ratio))
     print("Budget =", budget)
-    pop_size = 30
-    archive_size = 10
+    pop_size = 100
+    archive_size = 30
     max_iter = 10
-    runs = 2
+    runs = 1
 
     # === Step 3: Precompute Structural Metrics ===
     metrics = StructureMetrics(graph)
 
-    # === Step 4: Create Directory for Results ===
-    save_dir_multi = 'results/MultiObjBaselines'  # 多目标算法保存
-    save_dir_single = 'results/SingleObjBaselines'  # 单目标算法保存
+    # === Step 4: community detection ===
+    edge_dir = os.path.dirname(edges_file)
+
+    # 1. 加载节点 → 社区编号映射
+    node_to_comm_path = os.path.join(edge_dir, 'node_to_community.csv')
+    node_to_comm_df = pd.read_csv(node_to_comm_path)
+    node_to_comm = dict(zip(node_to_comm_df['node'], node_to_comm_df['community']))
+
+    # 2. 加载社区节点列表
+    communities_path = os.path.join(edge_dir, 'communities.txt')
+    communities = []
+    with open(communities_path, 'r') as f:
+        for line in f:
+            _, comm_str = line.strip().split(':', 1)
+            node_list = list(map(int, comm_str.strip().split(',')))
+            communities.append(set(node_list))
+
+    total_communities = len(communities)
+    print(f"✅ Loaded {total_communities} communities from saved file.")
+
+    # === Step 5: Create Directory for Results ===
+    save_dir_multi = 'results/MultiObjBaselines'
+    save_dir_single = 'results/SingleObjBaselines'
     os.makedirs(save_dir_multi, exist_ok=True)
     os.makedirs(save_dir_single, exist_ok=True)
 
-    # === Step 5: Initialize Results Containers ===
+    # === Step 6: Initialize Results Containers ===
     all_runs_fmodgwo = []
     all_runs_StratifiedFMODGWO=[]
     all_runs_modba = []
@@ -62,23 +79,36 @@ def main():
     all_runs_betweenness = []
     all_runs_eigenvector = []
 
-    # === Step 6: Execute Multiple Runs ===
+    # === Step 7: Execute Multiple Runs ===
     for run_idx in range(runs):
         print(f'Run {run_idx + 1}/{runs}')
 
-
-        optimizer = StratifiedFMODGWO(graph, metrics, budget, pop_size, archive_size)
+        optimizer = StratifiedFMODGWO(
+            graph=graph,
+            structure_metrics=metrics,
+            budget=budget,
+            pop_size=pop_size,
+            archive_size=archive_size,
+            node_to_comm=node_to_comm,
+            total_communities=total_communities
+        )
         archive, archive_costs_history, hv_values, times = optimizer.optimize(max_iter)
-        run_result_StratifiedFMODGWO = {
+
+        # Use a clean per-run dictionary
+        run_result = {
             "final_archive": archive,
             "archive_costs_history": archive_costs_history,
             "hv_values": hv_values,
             "times": times
         }
-        all_runs_StratifiedFMODGWO.append(run_result_StratifiedFMODGWO)
-        print("solution of StratifiedFMODGWO: (all_runs_StratifiedFMODGWO)", all_runs_StratifiedFMODGWO)
+
+        # ✅ Append only this run’s result — not the list!
+        all_runs_StratifiedFMODGWO.append(run_result)
+
+        print(f"✅ Run {run_idx + 1} complete. Final HV: {hv_values[-1]:.4f}")
+
         # --- 多目标算法1: FMODGWO ---
-        # optimizer = FMODGWO(graph, metrics, budget, pop_size, archive_size)
+        # optimizer = FMODGWO(graph, metrics, budget, pop_size, archive_size, node_to_comm, total_communities)
         # archive, archive_costs_history, hv_values, times = optimizer.optimize(max_iter)
         # run_result_fmodgwo = {
         #     "final_archive": archive,
@@ -89,7 +119,7 @@ def main():
         # all_runs_fmodgwo.append(run_result_fmodgwo)
 
         # # --- 多目标算法2: MODBA ---
-        # optimizer_modba = MODBA(graph, metrics, budget, pop_size, archive_size)
+        # optimizer_modba = MODBA(graph, metrics, budget, pop_size, archive_size, node_to_comm, total_communities)
         # archive, archive_costs_history, hv_values, times = optimizer_modba.optimize(max_iter)
         # run_result_modba = {
         #     "final_archive": archive,
@@ -100,7 +130,7 @@ def main():
         # all_runs_modba.append(run_result_modba)
         #
         # # --- 多目标算法3: MODPSO ---
-        # optimizer_modpso = MODPSO(graph, metrics, budget, pop_size, archive_size)
+        # optimizer_modpso = MODPSO(graph, metrics, budget, pop_size, archive_size, node_to_comm, total_communities)
         # archive, archive_costs_history, hv_values, times = optimizer_modpso.optimize(max_iter)
         # run_result_modpso = {
         #     "final_archive": archive,
@@ -111,37 +141,44 @@ def main():
         # all_runs_modpso.append(run_result_modpso)
 
         # # --- 单目标基线: CELF ---
-        # celf_solutions = CELF.CELF_seed_selection(graph, budget)
+        # celf_solutions = CELF.CELF_seed_selection(graph, budget, node_to_comm, total_communities)
         # all_runs_celf.append(celf_solutions)
-        #
+        # print("all_runs_celf = ", all_runs_celf)
+
         # # --- 单目标基线: Degree ---
-        # degree_solutions = degree.degree_seed_selection(graph, budget)
+        # degree_solutions = degree.degree_seed_selection(graph, budget, node_to_comm, total_communities)
         # all_runs_degree.append(degree_solutions)
+        # print("all_runs_degree=",all_runs_degree)
         #
         # # --- 单目标基线: Random ---
-        # random_solutions = RANDOM.random_seed_selection(graph, budget)
+        # random_solutions = RANDOM.random_seed_selection(graph, budget, node_to_comm, total_communities)
         # all_runs_random.append(random_solutions)
-        #
-        # # --- 单目标基线: PageRank ---
-        # pagerank_solutions = pagerank.pagerank_seed_selection(graph, budget)
+        # print("all_runs_random = ", all_runs_random)
+        # #
+        # # # --- 单目标基线: PageRank ---
+        # pagerank_solutions = pagerank.pagerank_seed_selection(graph, budget, node_to_comm, total_communities)
         # all_runs_pagerank.append(pagerank_solutions)
-        #
-        # # --- 单目标基线: Closeness Centrality ---
-        # closeness_solutions = ClosenessCentr.closeness_seed_selection(graph, budget)
+        # print("all_runs_pagerank = ",all_runs_pagerank)
+        # #
+        # # # --- 单目标基线: Closeness Centrality ---
+        # closeness_solutions = ClosenessCentr.closeness_seed_selection(graph, budget, node_to_comm, total_communities)
         # all_runs_closeness.append(closeness_solutions)
-        #
-        # # --- 单目标基线: Betweenness Centrality ---
-        # betweenness_solutions = betweennesscentr.betweenness_seed_selection(graph, budget)
+        # print("all_runs_closeness = ",all_runs_closeness)
+        # #
+        # # # --- 单目标基线: Betweenness Centrality ---
+        # betweenness_solutions = betweennesscentr.betweenness_seed_selection(graph, budget, node_to_comm, total_communities)
         # all_runs_betweenness.append(betweenness_solutions)
-        #
-        # # --- 单目标基线: Eigenvector Centrality ---
-        # eigenvector_solutions = eigenvectorcentr.eigenvector_seed_selection(graph, budget)
+        # print("all_runs_betweenness = ", all_runs_betweenness)
+        # #
+        # # # --- 单目标基线: Eigenvector Centrality ---
+        # eigenvector_solutions = eigenvectorcentr.eigenvector_seed_selection(graph, budget, node_to_comm, total_communities)
         # all_runs_eigenvector.append(eigenvector_solutions)
+        # print("all_runs_eigenvector =", all_runs_eigenvector)
 
     # === Step 7: Save and Plot for Multi-objective Algorithms ===
     visualizer_multi = Visualizer(save_dir_multi)
-
-    # 保存 FMODGWO 多目标结果
+    #
+    # # 保存 FMODGWO 多目标结果
     visualizer_multi.save_and_plot_multiobj(all_runs_StratifiedFMODGWO, algo_name='StratifiedFMODGWO')
 
     # 保存 MODBA 多目标结果

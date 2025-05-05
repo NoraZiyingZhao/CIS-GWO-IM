@@ -20,8 +20,25 @@ class ArchiveManager:
         """
         快速非支配排序 + 拥挤距离更新 Archive 和 Fronts。
         """
-        new_solutions = [wolf for wolf in wolves]
-        candidates = self.archive + new_solutions
+        # === 🧠 Step 1: # 去重：保留 Position 相同但 Cost 更优的狼
+        position_map = dict()  # key = frozenset(Position), value = best wolf
+
+        for wolf in self.archive + wolves:
+            key = frozenset(wolf.Position)
+            if key not in position_map:
+                position_map[key] = wolf
+            else:
+                existing = position_map[key]
+                # 比较谁的 Cost 更优（传播和公平性更大）
+                if self.dominates(wolf, existing):
+                    position_map[key] = wolf
+
+        # 过滤后的候选集
+        candidates = list(position_map.values())
+
+        # === Step 2: 快速非支配排序 ===
+        # new_solutions = [wolf for wolf in wolves]
+        # candidates = self.archive + new_solutions
 
         S = defaultdict(list)
         n = dict()
@@ -60,6 +77,7 @@ class ArchiveManager:
 
         self.fronts = [[candidates[i] for i in front] for front in fronts]
 
+        # === Step 3: 拥挤距离选择保留第一层 ===
         first_front = self.fronts[0]
         if len(first_front) > self.archive_size:
             first_front = self.calculate_crowding_distance(first_front)

@@ -1,6 +1,7 @@
 import snap
 import re
 
+
 def Eccentric(d, e):
 
     f = open(d)

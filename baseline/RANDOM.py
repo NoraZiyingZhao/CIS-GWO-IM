@@ -1,18 +1,24 @@
 import numpy as np
 import time
 import networkx as nx
-import influencediffusion as im
+from Evaluator import *
 from copy import deepcopy
 
-# result: max spread 0.09,<0.1
-def random_seed_selection(graph, budget, node_preferences, num_information, node_to_community, total_nodes, total_communities, search_tendency):
-    startTime = time.time()
-    spread_results = []
+def random_seed_selection(graph, budget):
+    start_time = time.time()
     all_solutions = []
-    node_list=np.array(list(graph.nodes()))
-    seed_set = list(np.random.choice(node_list, budget, replace=False))
-    spread_results = im.evaluate_objectives(graph, list(seed_set), node_preferences, num_information, node_to_community, total_nodes, total_communities)
-    elapsed_time = time.time() - startTime
-    # self.write_results(spread_results)
-    all_solutions.append((deepcopy(seed_set),deepcopy(spread_results),deepcopy(elapsed_time)))
+    evaluator = Evaluator(graph)
+
+    # 随机选 budget 个节点，确保不重复
+    node_list = list(graph.nodes())
+    seed_set = set(np.random.choice(node_list, budget, replace=False))
+
+    # 评估传播和公平性
+    fitness_values = evaluator.evaluate(seed_set)
+
+    # 记录运行时间
+    elapsed_time = time.time() - start_time
+
+    # 保存结果
+    all_solutions.append((deepcopy(seed_set), deepcopy(fitness_values), deepcopy(elapsed_time)))
     return all_solutions

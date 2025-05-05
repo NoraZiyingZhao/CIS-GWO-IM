@@ -5,17 +5,151 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a30ed4c3-4803-4934-8f0a-dc2099276b6d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/StratifiedFMODGWO.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currentwork" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datasets/CommunityManager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/StratifiedFMODGWO_final_hv_boxplot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/StratifiedFMODGWO_final_hv_values.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/StratifiedFMODGWO_final_pareto_costs.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/StratifiedFMODGWO_final_pareto_scatter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/StratifiedFMODGWO_final_pareto_solutions_detailed.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/StratifiedFMODGWO_hv_per_iteration.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/StratifiedFMODGWO_hv_vs_iteration.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/StratifiedFMODGWO_times_per_iteration.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/FMODGWO.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FMODGWO.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ArchiveManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/ArchiveManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Evaluator.py" beforeDir="false" afterPath="$PROJECT_DIR$/Evaluator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FMODGWO.py" beforeDir="false" afterPath="$PROJECT_DIR$/FMODGWO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GreyWolf.py" beforeDir="false" afterPath="$PROJECT_DIR$/GreyWolf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LeaderManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/LeaderManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StratifiedFMODGWO.py" beforeDir="false" afterPath="$PROJECT_DIR$/StratifiedFMODGWO.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline/CELF.py" beforeDir="false" afterPath="$PROJECT_DIR$/baseline/CELF.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline/ClosenessCentr.py" beforeDir="false" afterPath="$PROJECT_DIR$/baseline/ClosenessCentr.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline/EccentricCentr.py" beforeDir="false" afterPath="$PROJECT_DIR$/baseline/EccentricCentr.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline/RANDOM.py" beforeDir="false" afterPath="$PROJECT_DIR$/baseline/RANDOM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline/betweennesscentr.py" beforeDir="false" afterPath="$PROJECT_DIR$/baseline/betweennesscentr.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline/degree.py" beforeDir="false" afterPath="$PROJECT_DIR$/baseline/degree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline/eigenvectorcentr.py" beforeDir="false" afterPath="$PROJECT_DIR$/baseline/eigenvectorcentr.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline/pagerank.py" beforeDir="false" afterPath="$PROJECT_DIR$/baseline/pagerank.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/currentwork" beforeDir="false" afterPath="$PROJECT_DIR$/currentwork" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/Wiki-Vote.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/email-Eu-core-department-labels.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/email-Eu-core.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/email/communityinfo-email/Distribution of Cosine Similarity Values.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/email/communityinfo-email/all_communities.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/email/communityinfo-email/community_0_nodes_65.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/email/communityinfo-email/community_1_nodes_149.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/email/communityinfo-email/community_2_nodes_96.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/email/communityinfo-email/community_3_nodes_257.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/email/communityinfo-email/community_4_nodes_108.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/email/communityinfo-email/community_5_nodes_182.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/email/communityinfo-email/community_6_nodes_56.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/email/communityinfo-email/community_7_nodes_73.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/email/communityinfo-email/louvain_clusters_info.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/email/communityinfo-email/mapped_node_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/email_node_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/Distribution of Cosine Similarity Values.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/all_communities.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/community_0_nodes_354.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/community_10_nodes_237.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/community_11_nodes_25.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/community_12_nodes_61.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/community_13_nodes_206.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/community_14_nodes_226.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/community_15_nodes_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/community_1_nodes_430.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/community_2_nodes_19.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/community_3_nodes_423.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/community_4_nodes_535.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/community_5_nodes_323.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/community_6_nodes_128.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/community_7_nodes_432.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/community_8_nodes_548.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/community_9_nodes_73.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/louvain_clusters_info.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook/communityinfo-facebook/mapped_node_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook_combined.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/facebook_node_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food.edges" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food.nodes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/Distribution of Cosine Similarity Values.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/all_communities.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_0_nodes_29.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_10_nodes_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_11_nodes_42.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_12_nodes_17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_13_nodes_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_14_nodes_21.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_15_nodes_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_16_nodes_33.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_1_nodes_101.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_2_nodes_61.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_3_nodes_34.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_4_nodes_33.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_5_nodes_80.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_6_nodes_31.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_7_nodes_37.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_8_nodes_71.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/community_9_nodes_6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/louvain_clusters_info.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food/community-info-food/mapped_node_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/fb-pages-food_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/lastfm_asia_edges.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/lastfm_asia_features.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/lastfm_asia_target.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/old-email_node_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster.edges" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/Distribution of Cosine Similarity Values.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/all_communities.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_10_nodes_110.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_112_nodes_13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_11_nodes_141.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_12_nodes_36.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_13_nodes_150.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_14_nodes_45.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_15_nodes_23.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_17_nodes_22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_18_nodes_22.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_1_nodes_192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_22_nodes_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_2_nodes_157.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_3_nodes_64.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_4_nodes_308.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_79_nodes_10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_7_nodes_171.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_8_nodes_83.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/community_9_nodes_402.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/louvain_clusters_info.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster/community-info-ham/mapped_node_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/soc-hamsterster_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31.mtx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31/community-info-rice/Distribution of Cosine Similarity Values.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31/community-info-rice/all_communities.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31/community-info-rice/community_0_nodes_417.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31/community-info-rice/community_10_nodes_384.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31/community-info-rice/community_12_nodes_377.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31/community-info-rice/community_1_nodes_431.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31/community-info-rice/community_2_nodes_7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31/community-info-rice/community_4_nodes_438.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31/community-info-rice/community_5_nodes_395.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31/community-info-rice/community_6_nodes_405.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31/community-info-rice/community_7_nodes_423.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31/community-info-rice/community_8_nodes_421.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31/community-info-rice/community_9_nodes_385.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31/community-info-rice/louvain_clusters_info.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31/community-info-rice/mapped_node_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/socfb-Rice31_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/wiki/communityinfo-wiki/Distribution of Cosine Similarity Values.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/wiki/communityinfo-wiki/all_communities.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/wiki/communityinfo-wiki/community_13_nodes_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/wiki/communityinfo-wiki/community_20_nodes_36.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/wiki/communityinfo-wiki/community_2_nodes_1835.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/wiki/communityinfo-wiki/community_4_nodes_1443.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/wiki/communityinfo-wiki/community_5_nodes_2237.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/wiki/communityinfo-wiki/community_9_nodes_1510.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/wiki/communityinfo-wiki/louvain_clusters_info.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/wiki/communityinfo-wiki/mapped_node_preferences.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/wiki_node_preferences.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visualizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualizer.py" afterDir="false" />
     </list>
@@ -52,23 +186,50 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.main.executor": "Debug",
+    "Python.CommunityManager.executor": "Run",
+    "Python.main.executor": "Run",
     "Python.visualise.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "C:/Users/Zhaozy/PycharmProjects/Paper2",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Zhaozy\PycharmProjects\FMODGWO" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Zhaozy\PycharmProjects\FMODGWO\datasets" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.main">
+    <configuration name="CommunityManager" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="FMODGWO" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\Zhaozy\PycharmProjects\FMODGWO\datasets\CommunityManager.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="FMODGWO" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -90,6 +251,7 @@
     </configuration>
     <configuration name="visualizer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="FMODGWO" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -111,6 +273,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.CommunityManager" />
         <item itemvalue="Python.visualizer" />
       </list>
     </recent_temporary>
@@ -134,12 +297,16 @@
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="5fb60502-bbeb-4181-bc4d-b4c1645b1952" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="5fb60502-bbeb-4181-bc4d-b4c1645b1952">
           <value>
             <State>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
@@ -158,14 +325,10 @@
                   </entry>
                 </map>
               </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
             </State>
           </value>
         </entry>
-      </map>
-    </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="5fb60502-bbeb-4181-bc4d-b4c1645b1952" value="TOOL_WINDOW" />
       </map>
     </option>
   </component>
@@ -174,16 +337,5 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>184</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
