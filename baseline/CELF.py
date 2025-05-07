@@ -3,10 +3,10 @@ import time
 from copy import deepcopy
 from Evaluator import *
 
-def CELF_seed_selection(graph, budget):
+def CELF_seed_selection(graph, budget, node_to_comm, total_communities):
     start_time = time.time()
     all_solutions = []
-    evaluator = Evaluator(graph)
+    evaluator = Evaluator(graph, node_to_comm, total_communities)
 
     # 1. 计算每个节点的边际增益 (单独作为种子)
     marg_gain = []

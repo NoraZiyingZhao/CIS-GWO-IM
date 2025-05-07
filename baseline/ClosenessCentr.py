@@ -4,7 +4,7 @@ import time
 from Evaluator import *
 from copy import deepcopy
 
-def closeness_seed_selection(graph, budget):
+def closeness_seed_selection(graph, budget, node_to_comm, total_communities):
     """
     基于 Closeness Centrality 的种子节点选择算法。
     """
@@ -21,7 +21,7 @@ def closeness_seed_selection(graph, budget):
     seed_set = {node for node, _ in sorted_nodes[:budget]}
 
     # 4. 执行多目标评估
-    evaluator = Evaluator(graph)
+    evaluator = Evaluator(graph, node_to_comm, total_communities)
     fitness_values = evaluator.evaluate(seed_set)
 
     # 5. 记录运行时间

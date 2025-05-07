@@ -6,7 +6,9 @@ import networkx as nx
 from StratifiedFMODGWO import *
 # from MObaseline import MODBA, MODPSO
 # from MObaseline.GFMOGWOpackage import GFMOGWO
+from baseline import degree, CELF, ClosenessCentr, eigenvectorcentr, pagerank, RANDOM, betweennesscentr
 from visualizer import Visualizer
+from figureforsingle import *
 
 def main():
     # Step1: 加载图
@@ -140,46 +142,63 @@ def main():
         # }
         # all_runs_modpso.append(run_result_modpso)
 
-        # # --- 单目标基线: CELF ---
-        # celf_solutions = CELF.CELF_seed_selection(graph, budget, node_to_comm, total_communities)
-        # all_runs_celf.append(celf_solutions)
-        # print("all_runs_celf = ", all_runs_celf)
-
-        # # --- 单目标基线: Degree ---
-        # degree_solutions = degree.degree_seed_selection(graph, budget, node_to_comm, total_communities)
-        # all_runs_degree.append(degree_solutions)
-        # print("all_runs_degree=",all_runs_degree)
-        #
-        # # --- 单目标基线: Random ---
-        # random_solutions = RANDOM.random_seed_selection(graph, budget, node_to_comm, total_communities)
-        # all_runs_random.append(random_solutions)
-        # print("all_runs_random = ", all_runs_random)
-        # #
-        # # # --- 单目标基线: PageRank ---
-        # pagerank_solutions = pagerank.pagerank_seed_selection(graph, budget, node_to_comm, total_communities)
-        # all_runs_pagerank.append(pagerank_solutions)
-        # print("all_runs_pagerank = ",all_runs_pagerank)
-        # #
-        # # # --- 单目标基线: Closeness Centrality ---
-        # closeness_solutions = ClosenessCentr.closeness_seed_selection(graph, budget, node_to_comm, total_communities)
-        # all_runs_closeness.append(closeness_solutions)
-        # print("all_runs_closeness = ",all_runs_closeness)
-        # #
-        # # # --- 单目标基线: Betweenness Centrality ---
-        # betweenness_solutions = betweennesscentr.betweenness_seed_selection(graph, budget, node_to_comm, total_communities)
-        # all_runs_betweenness.append(betweenness_solutions)
-        # print("all_runs_betweenness = ", all_runs_betweenness)
-        # #
-        # # # --- 单目标基线: Eigenvector Centrality ---
-        # eigenvector_solutions = eigenvectorcentr.eigenvector_seed_selection(graph, budget, node_to_comm, total_communities)
-        # all_runs_eigenvector.append(eigenvector_solutions)
-        # print("all_runs_eigenvector =", all_runs_eigenvector)
+        # --- 单目标基线: CELF ---
+    #     celf_solutions = CELF.CELF_seed_selection(graph, budget, node_to_comm, total_communities)
+    #     all_runs_celf.append(celf_solutions)
+    #     print("all_runs_celf = ", all_runs_celf)
+    #
+    #     # --- 单目标基线: Degree ---
+    #     degree_solutions = degree.degree_seed_selection(graph, budget, node_to_comm, total_communities)
+    #     all_runs_degree.append(degree_solutions)
+    #     print("all_runs_degree=",all_runs_degree)
+    #
+    #     # --- 单目标基线: Random ---
+    #     random_solutions = RANDOM.random_seed_selection(graph, budget, node_to_comm, total_communities)
+    #     all_runs_random.append(random_solutions)
+    #     print("all_runs_random = ", all_runs_random)
+    #     #
+    #     # # --- 单目标基线: PageRank ---
+    #     pagerank_solutions = pagerank.pagerank_seed_selection(graph, budget, node_to_comm, total_communities)
+    #     all_runs_pagerank.append(pagerank_solutions)
+    #     print("all_runs_pagerank = ",all_runs_pagerank)
+    #     #
+    #     # # --- 单目标基线: Closeness Centrality ---
+    #     closeness_solutions = ClosenessCentr.closeness_seed_selection(graph, budget, node_to_comm, total_communities)
+    #     all_runs_closeness.append(closeness_solutions)
+    #     print("all_runs_closeness = ",all_runs_closeness)
+    #     #
+    #     # # --- 单目标基线: Betweenness Centrality ---
+    #     betweenness_solutions = betweennesscentr.betweenness_seed_selection(graph, budget, node_to_comm, total_communities)
+    #     all_runs_betweenness.append(betweenness_solutions)
+    #     print("all_runs_betweenness = ", all_runs_betweenness)
+    #     #
+    #     # # --- 单目标基线: Eigenvector Centrality ---
+    #     eigenvector_solutions = eigenvectorcentr.eigenvector_seed_selection(graph, budget, node_to_comm, total_communities)
+    #     all_runs_eigenvector.append(eigenvector_solutions)
+    #     print("all_runs_eigenvector =", all_runs_eigenvector)
+    #
+    # # === Prepare results for PF plot ===
+    # single_obj_results = {
+    #     'CELF': all_runs_celf,
+    #     'Degree': all_runs_degree,
+    #     'Random': all_runs_random,
+    #     'PageRank': all_runs_pagerank,
+    #     'Closeness': all_runs_closeness,
+    #     'Betweenness': all_runs_betweenness,
+    #     'Eigenvector': all_runs_eigenvector
+    # }
+    # # Extract dataset name from edges file path
+    # network_name = os.path.basename(os.path.dirname(edges_file))  # e.g., "communityinfo-email"
+    # network_name = network_name.replace("communityinfo-", "")  # clean up if needed
+    #
+    # # Plot and save PF
+    # plot_and_save_pf_single_objective(single_obj_results, save_dir_single, network_name)
 
     # === Step 7: Save and Plot for Multi-objective Algorithms ===
-    visualizer_multi = Visualizer(save_dir_multi)
-    #
-    # # 保存 FMODGWO 多目标结果
-    visualizer_multi.save_and_plot_multiobj(all_runs_StratifiedFMODGWO, algo_name='StratifiedFMODGWO')
+    # visualizer_multi = Visualizer(save_dir_multi)
+    # #
+    # # # 保存 FMODGWO 多目标结果
+    # visualizer_multi.save_and_plot_multiobj(all_runs_StratifiedFMODGWO, algo_name='StratifiedFMODGWO')
 
     # 保存 MODBA 多目标结果
     # visualizer_multi.save_and_plot_multiobj(all_runs_modba, algo_name='MODBA')

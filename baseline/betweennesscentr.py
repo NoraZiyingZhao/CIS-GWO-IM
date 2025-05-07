@@ -3,7 +3,7 @@ import time
 from copy import deepcopy
 from Evaluator import *
 
-def betweenness_seed_selection(graph, budget):
+def betweenness_seed_selection(graph, budget, node_to_comm, total_communities):
     """
     基于 Betweenness Centrality 的种子节点选择算法。
     """
@@ -18,7 +18,7 @@ def betweenness_seed_selection(graph, budget):
     seed_set = {node for node, _ in sorted_nodes[:budget]}
 
     # 3. 调用新的 Evaluator 评估
-    evaluator = Evaluator(graph)
+    evaluator = Evaluator(graph, node_to_comm, total_communities)
     fitness_values = evaluator.evaluate(seed_set)
 
     # 4. 记录运行时间

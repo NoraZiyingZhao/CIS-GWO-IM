@@ -3,7 +3,7 @@ import networkx as nx
 from copy import deepcopy
 from Evaluator import *
 
-def degree_seed_selection(graph, budget):
+def degree_seed_selection(graph, budget, node_to_comm, total_communities):
     """
     基于出度的节点选择算法。
     :param graph: 有向图 (networkx DiGraph)
@@ -22,7 +22,7 @@ def degree_seed_selection(graph, budget):
         seed_set.add(deg[0][0])  # 加入最大度节点
         deg = deg[1:]            # 从候选中移除
 
-    evaluator = Evaluator(graph)
+    evaluator = Evaluator(graph, node_to_comm, total_communities)
     final_spread = evaluator.evaluate(seed_set)
 
     # 计算总运行时间

@@ -4,7 +4,7 @@ import networkx as nx
 from Evaluator import *
 from copy import deepcopy
 
-def pagerank_seed_selection(graph, budget):
+def pagerank_seed_selection(graph, budget, node_to_comm, total_communities):
     start_time = time.time()
     all_solutions = []
 
@@ -16,7 +16,7 @@ def pagerank_seed_selection(graph, budget):
     seed_set = set(node for node, _ in sorted_nodes[:budget])
 
     # Step 3: Evaluate fitness
-    evaluator = Evaluator(graph)
+    evaluator = Evaluator(graph, node_to_comm, total_communities)
     fitness_values = evaluator.evaluate(seed_set)
 
     # Step 4: Record time

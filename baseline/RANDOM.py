@@ -4,10 +4,10 @@ import networkx as nx
 from Evaluator import *
 from copy import deepcopy
 
-def random_seed_selection(graph, budget):
+def random_seed_selection(graph, budget, node_to_comm, total_communities):
     start_time = time.time()
     all_solutions = []
-    evaluator = Evaluator(graph)
+    evaluator = Evaluator(graph, node_to_comm, total_communities)
 
     # 随机选 budget 个节点，确保不重复
     node_list = list(graph.nodes())

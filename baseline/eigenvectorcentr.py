@@ -3,7 +3,7 @@ import networkx as nx
 from copy import deepcopy
 from Evaluator import *
 
-def eigenvector_seed_selection(graph, budget):
+def eigenvector_seed_selection(graph, budget, node_to_comm, total_communities):
     """
     基于 Eigenvector Centrality 的种子节点选择算法。
     """
@@ -18,7 +18,7 @@ def eigenvector_seed_selection(graph, budget):
     seed_set = {node for node, _ in sorted_nodes[:budget]}
 
     # 3. 调用 Evaluator 进行评估
-    evaluator = Evaluator(graph)
+    evaluator = Evaluator(graph, node_to_comm, total_communities)
     fitness_values = evaluator.evaluate(seed_set)
 
     # 4. 记录运行时间
