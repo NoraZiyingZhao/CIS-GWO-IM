@@ -8,7 +8,7 @@ class Visualizer:
         self.save_dir = save_dir
         os.makedirs(self.save_dir, exist_ok=True)
 
-    def save_and_plot_multiobj(self, all_runs_results, algo_name='Algorithm'):
+    def save_and_plot_multiobj(self, all_runs_results, algo_name='Algorithm', dataset_name='dataset'):
         """
         保存数据并绘制图像（适用于多目标优化算法，如FMODGWO）
         all_runs_results: List[Dict], 每个 run 的结果（带 final_archive, hv_values, times）
@@ -48,109 +48,116 @@ class Visualizer:
                     'Final_HV': final_hv
                 })
 
+            # Build file base
+        file_prefix = f"{algo_name}_{dataset_name}"
+
         # === 保存 Excel 文件 ===
         hv_df = pd.DataFrame(all_hv_curves).T
         hv_df.insert(0, 'Iteration', np.arange(hv_df.shape[0]))  # 添加Iteration列
-        hv_df.to_excel(os.path.join(self.save_dir, f'{algo_name}_hv_per_iteration.xlsx'), index=False)
+        hv_df.to_excel(os.path.join(self.save_dir, f'{file_prefix}_hv_per_iteration.xlsx'), index=False)
 
         times_df = pd.DataFrame(all_times).T
         times_df.insert(0, 'Iteration', np.arange(times_df.shape[0]))  # 添加Iteration列
-        times_df.to_excel(os.path.join(self.save_dir, f'{algo_name}_times_per_iteration.xlsx'), index=False)
+        times_df.to_excel(os.path.join(self.save_dir, f'{file_prefix}_times_per_iteration.xlsx'), index=False)
 
         final_costs_df = pd.DataFrame(all_final_costs, columns=['Run', 'Fitness1_Spread', 'Fitness2_Fairness'])
-        final_costs_df.to_excel(os.path.join(self.save_dir, f'{algo_name}_final_pareto_costs.xlsx'),
-                                index=False)
+        # final_costs_df.to_excel(os.path.join(self.save_dir, f'{file_prefix}_final_pareto_costs.xlsx'),
+        #                         index=False)
 
         final_hv_df = pd.DataFrame({
             'Run': np.arange(1, len(all_final_hv) + 1),
             'Final_HV': all_final_hv
         })
-
-        final_hv_df.to_excel(os.path.join(self.save_dir, f'{algo_name}_final_hv_values.xlsx'), index=False)
+        #
+        # final_hv_df.to_excel(os.path.join(self.save_dir, f'{file_prefix}_final_hv_values.xlsx'), index=False)
 
         detailed_df = pd.DataFrame(all_solutions_detailed)
-        detailed_df.to_excel(os.path.join(self.save_dir, f'{algo_name}_final_pareto_solutions_detailed.xlsx'),
+        detailed_df.to_excel(os.path.join(self.save_dir, f'{file_prefix}_final_pareto_solutions_detailed.xlsx'),
                              index=False)
 
         # === 绘制图像 ===
-        self.plot_hv_vs_iteration(hv_df, algo_name)
-        self.plot_final_hv_boxplot(all_final_hv, algo_name)
-        self.plot_final_pareto_scatter(final_costs_df, algo_name)
+        # Plot figures with dataset-aware names
+        self.plot_hv_vs_iteration(hv_df, algo_name, dataset_name)
+        self.plot_final_hv_boxplot(all_final_hv, algo_name, dataset_name)
+        self.plot_final_pareto_scatter(final_costs_df, algo_name, dataset_name)
 
-        print(f"✅ {algo_name} 多目标结果保存并绘制完成！\n")
+        print(f"✅ {algo_name} on {dataset_name}: results saved and plotted!\n")
 
-    def save_and_plot_singleobj(self, all_runs_results, algo_name='Algorithm'):
-        """
-        保存数据并绘制图像（适用于单目标优化算法，如Degree、Random等）
-        all_runs_results: List[Dict], 每个 run 的结果（final_solutions）
-        """
-        runs = len(all_runs_results)
-        all_final_spreads = []  # 这里只关心spread
-        all_solutions = []
-
-        for run_idx, result in enumerate(all_runs_results):
-            for sol_idx, sol in enumerate(result['final_solutions']):
-                seed_set, spread_value, time_used = sol
-                all_final_spreads.append(spread_value)
-                all_solutions.append({
-                    'Run': run_idx + 1,
-                    'Solution_Index': sol_idx + 1,
-                    'Spread': spread_value,
-                    'Time': time_used,
-                    'Seed_Set': str(seed_set)
-                })
-
-        spread_df = pd.DataFrame({'Run': np.arange(1, len(all_final_spreads) + 1), 'Spread': all_final_spreads})
-        spread_df.to_excel(os.path.join(self.save_dir, f'{algo_name}_spread_values.xlsx'), index=False)
-
-        full_df = pd.DataFrame(all_solutions)
-        full_df.to_excel(os.path.join(self.save_dir, f'{algo_name}_final_solutions.xlsx'), index=False)
-
-        plt.figure(figsize=(8, 6))
-        plt.boxplot(all_final_spreads, labels=[algo_name])
-        plt.ylabel('Spread')
-        plt.title(f'Spread Distribution Across Runs ({algo_name})')
-        plt.grid()
-        plt.savefig(os.path.join(self.save_dir, f'{algo_name}_spread_boxplot.png'), dpi=600)
-        plt.close()
-
-        print(f"✅ {algo_name} 单目标结果保存并绘制完成！\n")
-
-    def plot_hv_vs_iteration(self, hv_df, algo_name):
-        """绘制每次迭代的平均 HV 曲线"""
+    def plot_hv_vs_iteration(self, hv_df, algo_name, dataset_name):
         mean_hv = np.mean(hv_df.values, axis=1)
         std_hv = np.std(hv_df.values, axis=1)
 
         plt.figure(figsize=(10, 7))
-        plt.plot(range(1, len(mean_hv)+1), mean_hv, label='Mean HV', color='blue')
-        plt.fill_between(range(1, len(mean_hv)+1), mean_hv - std_hv, mean_hv + std_hv,
-                         color='blue', alpha=0.3, label='Std Deviation')
+        plt.plot(range(1, len(mean_hv) + 1), mean_hv, label='Mean HV', color='blue')
+        plt.fill_between(range(1, len(mean_hv) + 1), mean_hv - std_hv, mean_hv + std_hv, color='blue', alpha=0.3,
+                         label='Std Deviation')
         plt.xlabel('Iteration')
         plt.ylabel('Hypervolume')
-        plt.title(f'{algo_name} HV vs Iteration (Mean ± Std)')
+        plt.title(f'{algo_name} HV vs Iteration ({dataset_name})')
         plt.legend()
         plt.grid()
-        plt.savefig(os.path.join(self.save_dir, f'{algo_name}_hv_vs_iteration.png'), dpi=600)
+        plt.savefig(os.path.join(self.save_dir, f'{algo_name}_{dataset_name}_hv_vs_iteration.png'), dpi=600)
         plt.close()
 
-    def plot_final_hv_boxplot(self, all_final_hv, algo_name):
-        """绘制Final HV的boxplot"""
+    def plot_final_hv_boxplot(self, all_final_hv, algo_name, dataset_name):
         plt.figure(figsize=(8, 6))
         plt.boxplot(all_final_hv, labels=[algo_name])
         plt.ylabel('Final Hypervolume')
-        plt.title(f'{algo_name} Final HV Distribution')
+        plt.title(f'{algo_name} Final HV Distribution ({dataset_name})')
         plt.grid()
-        plt.savefig(os.path.join(self.save_dir, f'{algo_name}_final_hv_boxplot.png'), dpi=600)
+        plt.savefig(os.path.join(self.save_dir, f'{algo_name}_{dataset_name}_final_hv_boxplot.png'), dpi=600)
         plt.close()
 
-    def plot_final_pareto_scatter(self, final_costs_df, algo_name):
-        """绘制最后收敛的 Pareto 解的散点图"""
+    def plot_final_pareto_scatter(self, final_costs_df, algo_name, dataset_name):
         plt.figure(figsize=(8, 6))
-        plt.scatter(final_costs_df['Fitness1_Spread'], final_costs_df['Fitness2_Fairness'],
-                    c='red', edgecolors='black')
+        plt.scatter(final_costs_df['Fitness1_Spread'], final_costs_df['Fitness2_Fairness'], c='red', edgecolors='black')
         plt.xlabel('Fitness 1 (Spread)')
         plt.ylabel('Fitness 2 (Fairness)')
-        plt.title(f'{algo_name} Final Pareto Front Scatter')
+        plt.title(f'{algo_name} Final Pareto Front ({dataset_name})')
         plt.grid()
-        plt.savefig(os.path.join(self.save_dir, f'{algo_name}_final_pareto_scatter.png'), dpi=600)
+        plt.savefig(os.path.join(self.save_dir, f'{algo_name}_{dataset_name}_final_pareto_scatter.png'), dpi=600)
         plt.close()
+
+def plot_combined_pareto_front(self, multiobj_results, singleobj_results, save_dir, dataset_name, filename='Combined_PF.png'):
+    """
+    Draws a combined Pareto Front figure with multi-objective and single-objective solutions.
+
+    :param multiobj_results: Dict {algorithm_name: list of run dicts} for multi-objective methods
+    :param singleobj_results: Dict {algorithm_name: list of runs}, each run is [(seed_set, (f1, f2), time)]
+    :param save_dir: Directory to save the figure
+    :param dataset_name: Name of dataset (used in title and filename)
+    :param filename: Name of the saved plot file
+    """
+
+    plt.figure(figsize=(10, 7))
+
+    # === Multi-objective Algorithms ===
+    for algo_name, runs in multiobj_results.items():
+        for run in runs:
+            archive = run['final_archive']
+            for sol in archive:
+                cost = getattr(sol, 'Cost', [None, None])
+                plt.scatter(cost[0], cost[1], label=algo_name, marker='o', alpha=0.7)
+
+    # === Single-objective Algorithms ===
+    for algo_name, runs in singleobj_results.items():
+        for run in runs:
+            for sol in run:
+                f1, f2 = sol[1]
+                plt.scatter(f1, f2, label=algo_name, marker='x', alpha=0.8)
+
+    # === Deduplicate Legend ===
+    handles, labels = plt.gca().get_legend_handles_labels()
+    by_label = dict(zip(labels, handles))
+    plt.legend(by_label.values(), by_label.keys())
+
+    plt.xlabel("Fitness Objective 1")
+    plt.ylabel("Fitness Objective 2")
+    plt.title(f"Combined Pareto Front — {dataset_name}")
+    plt.grid(True)
+
+    os.makedirs(save_dir, exist_ok=True)
+    plt.savefig(os.path.join(save_dir, filename), dpi=600)
+    plt.close()
+
+    print(f"✅ Combined PF figure saved to: {os.path.join(save_dir, filename)}")

@@ -1,5 +1,36 @@
 import os
 import matplotlib.pyplot as plt
+import pandas as pd
+
+def save_single_objective_results_to_excel(results_dict, save_dir, network_name, filename_prefix='SingleObjResults'):
+    """
+    Save the seed set, fitness values, and time of single-objective algorithms to an Excel file.
+
+    :param results_dict: Dictionary mapping algorithm names to list of run results.
+                         Each run result is a list of tuples: (seed_set, (f1, f2), time)
+    :param save_dir: Directory to save the Excel file.
+    :param network_name: Network name to use in the filename.
+    :param filename_prefix: Filename prefix (without extension).
+    """
+    rows = []
+    for algo_name, runs in results_dict.items():
+        for run in runs:
+            for seed_set, fitness, elapsed_time in run:
+                rows.append({
+                    'Algorithm': algo_name,
+                    'SeedSet': sorted(seed_set),  # convert to sorted list for readability
+                    'Fitness1': fitness[0],
+                    'Fitness2': fitness[1],
+                    'Time': elapsed_time
+                })
+
+    df = pd.DataFrame(rows)
+    os.makedirs(save_dir, exist_ok=True)
+    filename = f"{filename_prefix}_{network_name}.xlsx"
+    output_path = os.path.join(save_dir, filename)
+    df.to_excel(output_path, index=False)
+
+    print(f"✅ Saved results to Excel: {output_path}")
 
 def plot_and_save_pf_single_objective(results_dict, save_dir, network_name, filename_prefix='PF_single_objective'):
     """
