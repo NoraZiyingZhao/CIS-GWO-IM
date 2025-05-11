@@ -217,7 +217,7 @@ def main():
             'MODBA': all_runs_modba,  # if used
             'MODPSO': all_runs_modpso  # if used
         },
-        single_obj_results=single_obj_results,
+        singleobj_results=single_obj_results,
         save_dir=save_dir_single,
         dataset_name=network_name,
         filename=f'Combined_PF_{network_name}.png'

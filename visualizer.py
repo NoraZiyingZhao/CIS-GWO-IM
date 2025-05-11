@@ -118,7 +118,7 @@ class Visualizer:
         plt.savefig(os.path.join(self.save_dir, f'{algo_name}_{dataset_name}_final_pareto_scatter.png'), dpi=600)
         plt.close()
 
-def plot_combined_pareto_front(self, multiobj_results, singleobj_results, save_dir, dataset_name, filename='Combined_PF.png'):
+def plot_combined_pareto_front(multiobj_results, singleobj_results, save_dir, dataset_name, filename):
     """
     Draws a combined Pareto Front figure with multi-objective and single-objective solutions.
 

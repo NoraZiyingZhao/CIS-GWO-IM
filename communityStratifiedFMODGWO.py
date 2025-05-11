@@ -159,7 +159,7 @@ class communityStratifiedFMODGWO:
         archive_costs_history = []  # 每代的Pareto解Cost
         hv_values = []  # 每代的HV
         times = []  # 每代的时间
-        transition_point = 0.6  # 设定迭代总次数的40%作为算法由“全局探索”阶段向“局部开发”阶段切换的关键节点。
+        transition_point = 0.6  # 设定迭代总次数的60%作为算法由“全局探索”阶段向“局部开发”阶段切换的关键节点。
 
         for t in range(max_iter):
             start_time = time.time()
