@@ -118,8 +118,12 @@ class Visualizer:
         plt.savefig(os.path.join(self.save_dir, f'{algo_name}_{dataset_name}_final_pareto_scatter.png'), dpi=600)
         plt.close()
 
+import matplotlib.pyplot as plt
+import os
+
 def plot_combined_pareto_front(multiobj_results, singleobj_results, save_dir, dataset_name, filename):
     """
+    绘制包含多目标与单目标方法的 Pareto 前沿图，使用唯一 (颜色, marker) 组合区分每个算法。
     Draws a combined Pareto Front figure with multi-objective and single-objective solutions.
 
     :param multiobj_results: Dict {algorithm_name: list of run dicts} for multi-objective methods
@@ -131,25 +135,40 @@ def plot_combined_pareto_front(multiobj_results, singleobj_results, save_dir, da
 
     plt.figure(figsize=(10, 7))
 
+    # 定义 marker 和颜色组合（循环使用也不重复）
+    marker_styles = ['o', 's', '^', 'D', 'v', 'P', '*', 'X']
+    colors = ['tab:purple', 'tab:red', 'tab:blue', 'tab:green', 'tab:orange', 'tab:pink', 'tab:gray', 'tab:cyan']
+
+    # 构造算法 → 样式映射表
+    algo_names = list(multiobj_results.keys()) + list(singleobj_results.keys())
+    style_map = {
+        algo: {'marker': marker_styles[i % len(marker_styles)], 'color': colors[i % len(colors)]}
+        for i, algo in enumerate(algo_names)
+    }
+
     # === Multi-objective Algorithms ===
     for algo_name, runs in multiobj_results.items():
+        style = style_map[algo_name]
         for run in runs:
             archive = run['final_archive']
             for sol in archive:
                 cost = getattr(sol, 'Cost', [None, None])
-                plt.scatter(cost[0], cost[1], label=algo_name, marker='o', alpha=0.7)
+                plt.scatter(cost[0], cost[1], label=algo_name,
+                            marker=style['marker'], color=style['color'], alpha=0.8)
 
     # === Single-objective Algorithms ===
     for algo_name, runs in singleobj_results.items():
+        style = style_map[algo_name]
         for run in runs:
             for sol in run:
                 f1, f2 = sol[1]
-                plt.scatter(f1, f2, label=algo_name, marker='x', alpha=0.8)
+                plt.scatter(f1, f2, label=algo_name,
+                            marker=style['marker'], color=style['color'], alpha=0.8)
 
-    # === Deduplicate Legend ===
+    # === 去除重复标签 ===
     handles, labels = plt.gca().get_legend_handles_labels()
     by_label = dict(zip(labels, handles))
-    plt.legend(by_label.values(), by_label.keys())
+    plt.legend(by_label.values(), by_label.keys(), fontsize=10)
 
     plt.xlabel("Fitness Objective 1")
     plt.ylabel("Fitness Objective 2")
@@ -161,3 +180,4 @@ def plot_combined_pareto_front(multiobj_results, singleobj_results, save_dir, da
     plt.close()
 
     print(f"✅ Combined PF figure saved to: {os.path.join(save_dir, filename)}")
+

@@ -5,12 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a30ed4c3-4803-4934-8f0a-dc2099276b6d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/FMODGWO.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FMODGWO.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/communityStratifiedFMODGWO_email_final_hv_boxplot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/communityStratifiedFMODGWO_email_final_pareto_scatter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/communityStratifiedFMODGWO_email_hv_per_iteration.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/communityStratifiedFMODGWO_email_hv_vs_iteration.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/communityStratifiedFMODGWO_email_times_per_iteration.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/communityStratifiedFMODGWO_facebook_final_hv_boxplot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/communityStratifiedFMODGWO_facebook_final_pareto_scatter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/communityStratifiedFMODGWO_facebook_final_pareto_solutions_detailed.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/communityStratifiedFMODGWO_facebook_hv_per_iteration.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/communityStratifiedFMODGWO_facebook_hv_vs_iteration.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/MultiObjBaselines/communityStratifiedFMODGWO_facebook_times_per_iteration.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/SingleObjBaselines/Combined_PF_email.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/SingleObjBaselines/Combined_PF_facebook.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/SingleObjBaselines/PF_single_objective_email.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/SingleObjBaselines/PF_single_objective_facebook.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/results/SingleObjBaselines/SingleObjResults_facebook.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PerturbationHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/PerturbationHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StructureMetrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/StructureMetrics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/communityStratifiedFMODGWO.py" beforeDir="false" afterPath="$PROJECT_DIR$/communityStratifiedFMODGWO.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/currentwork" beforeDir="false" afterPath="$PROJECT_DIR$/currentwork" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/MultiObjBaselines/StratifiedFMODGWO_community-info-food_final_hv_values.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/results/MultiObjBaselines/communityStratifiedFMODGWO_email_final_pareto_solutions_detailed.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/MultiObjBaselines/StratifiedFMODGWO_community-info-food_final_pareto_costs.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/MultiObjBaselines/StratifiedFMODGWO_community-info-food_final_pareto_solutions_detailed.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/MultiObjBaselines/StratifiedFMODGWO_community-info-food_hv_per_iteration.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/MultiObjBaselines/StratifiedFMODGWO_community-info-food_times_per_iteration.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/SingleObjBaselines/PF_single_objective_community-info-food.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/SingleObjBaselines/SingleObjResults_community-info-food.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/results/SingleObjBaselines/SingleObjResults_email.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visualizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualizer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

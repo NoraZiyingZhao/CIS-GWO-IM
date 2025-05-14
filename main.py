@@ -3,7 +3,7 @@ import os
 import networkx as nx
 
 # from FMODGWO import *
-from StratifiedFMODGWO import *
+from communityStratifiedFMODGWO import *
 # from MObaseline import MODBA, MODPSO
 # from MObaseline.GFMOGWOpackage import GFMOGWO
 from baseline import degree, CELF, ClosenessCentr, eigenvectorcentr, pagerank, RANDOM, betweennesscentr
@@ -21,21 +21,22 @@ def main():
     # === Step 1: Load Dataset ===
     # edges_file = 'datasets/fb-pages-food/community-info-food/mapped_nodes_edges.txt'
     # edges_file = 'datasets/soc-hamsterster/community-info-ham/mapped_nodes_edges.txt'
-    edges_file = 'datasets/email/communityinfo-email/mapped_nodes_edges.txt'
-    # edges_file = 'datasets/facebook/communityinfo-facebook/mapped_nodes_edges.txt'
+    # edges_file = 'datasets/email/communityinfo-email/mapped_nodes_edges.txt'
+    edges_file = 'datasets/facebook/communityinfo-facebook/mapped_nodes_edges.txt'
     # edges_file = 'datasets/wiki/communityinfo-wiki/mapped_nodes_edges.txt'
     # edges_file = 'datasets/socfb-Rice31/community-info-rice/mapped_nodes_edges.txt'
 
     graph = nx.read_edgelist(edges_file, nodetype=int)
 
     # === Step 2: Algorithm Parameters ===
-    budget_ratio = 0.01  # 1%
-    budget = max(5, int(graph.number_of_nodes() * budget_ratio))
+    # budget_ratio = 0.01  # 0.1%,0.5%, 1%(1k-10k)
+    # budget = max(5, int(graph.number_of_nodes() * budget_ratio))
+    budget=10 #5,10,20 (<1k)
     print("Budget =", budget)
     pop_size = 100
     archive_size = 30
     max_iter = 100
-    runs = 1
+    runs = 2
 
     # === Step 3: Precompute Structural Metrics ===
     metrics = StructureMetrics(graph)
@@ -68,7 +69,7 @@ def main():
 
     # === Step 6: Initialize Results Containers ===
     all_runs_fmodgwo = []
-    all_runs_StratifiedFMODGWO=[]
+    all_runs_communityStratifiedFMODGWO=[]
     all_runs_modba = []
     all_runs_modpso = []
     all_runs_gfmogwo=[]
@@ -85,7 +86,7 @@ def main():
     for run_idx in range(runs):
         print(f'Run {run_idx + 1}/{runs}')
 
-        optimizer = StratifiedFMODGWO(
+        optimizer = communityStratifiedFMODGWO(
             graph=graph,
             structure_metrics=metrics,
             budget=budget,
@@ -105,7 +106,7 @@ def main():
         }
 
         # ✅ Append only this run’s result — not the list!
-        all_runs_StratifiedFMODGWO.append(run_result)
+        all_runs_communityStratifiedFMODGWO.append(run_result)
 
         print(f"✅ Run {run_idx + 1} complete. Final HV: {hv_values[-1]:.4f}")
 
@@ -200,7 +201,7 @@ def main():
     visualizer_multi = Visualizer(save_dir_multi)
     #
     # # 保存 FMODGWO 多目标结果
-    visualizer_multi.save_and_plot_multiobj(all_runs_StratifiedFMODGWO, algo_name='StratifiedFMODGWO', dataset_name=network_name)
+    visualizer_multi.save_and_plot_multiobj(all_runs_communityStratifiedFMODGWO, algo_name='communityStratifiedFMODGWO', dataset_name=network_name)
 
     # 保存 MODBA 多目标结果
     # visualizer_multi.save_and_plot_multiobj(all_runs_modba, algo_name='MODBA')
@@ -213,9 +214,9 @@ def main():
 
     plot_combined_pareto_front(
         multiobj_results={
-            'StratifiedFMODGWO': all_runs_StratifiedFMODGWO,
-            'MODBA': all_runs_modba,  # if used
-            'MODPSO': all_runs_modpso  # if used
+            'communityStratifiedFMODGWO': all_runs_communityStratifiedFMODGWO,
+            # 'MODBA': all_runs_modba,  # if used
+            # 'MODPSO': all_runs_modpso  # if used
         },
         singleobj_results=single_obj_results,
         save_dir=save_dir_single,
