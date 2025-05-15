@@ -6,16 +6,16 @@
 import networkx as nx
 import numpy as np
 import random
-import influencediffusion as im
+# import influencediffusion as im
 import paretosolution as ps
-import HV as hv
+# import HV as hv
 from ArchiveManager import *
 import time
 from copy import deepcopy
+from Evaluator import *
 
-
-class modpso:
-    def __init__(self, graph, budget, num_particles, archive_size):
+class MODPSO:
+    def __init__(self, graph, budget, num_particles, archive_size, node_to_community, total_communities):
         """
         多目标离散粒子群优化
         """
@@ -23,6 +23,9 @@ class modpso:
         self.budget = budget  # 种子集合大小
         self.num_particles = num_particles  # 粒子数量
         self.archive_size = archive_size  # 存档大小
+        self.node_to_community = node_to_community
+        self.total_communities = total_communities
+
         self.particles = []  # 粒子位置（种子集合）
         self.velocities = []  # 粒子速度（添加或移除操作）
         self.pbest = []  # 个体最优位置
@@ -34,8 +37,9 @@ class modpso:
         self.end_time = []
         self.Time = []
 
-    def initialize_particles(self, node_preferences, num_information, node_to_community, total_nodes,
-                             total_communities):
+        self.evaluator = Evaluator(self.graph, self.node_to_community, self.total_communities)
+
+    def initialize_particles(self):
 
         nodes = list(self.graph.nodes)
 
@@ -50,8 +54,7 @@ class modpso:
 
             # 初始化个体最优解为当前解
             self.pbest.append(particle)
-            fitness = im.evaluate_objectives(self.graph, particle, node_preferences, num_information, node_to_community,
-                                             total_nodes, total_communities)
+            fitness = self.evaluator.evaluate(particle)
             self.pbest_fitness.append(fitness)
 
             # 更新 Pareto 档案
@@ -72,7 +75,7 @@ class modpso:
         """
         current_position = set(self.particles[particle_idx])
         pbest_position = set(self.pbest[particle_idx])
-        # gbest_position = set(self.gbest)
+        gbest_position = set(gbest_position)
 
         # 计算需要添加和移除的节点
         add_operations = list((pbest_position | gbest_position) - current_position)
@@ -109,45 +112,45 @@ class modpso:
 
         self.particles[particle_idx] = list(new_position)
 
-    def local_search(self, particle, node_preferences, num_information, node_to_community, total_nodes,
-                             total_communities):
+    def local_search(self, particle):
         """
-        局部搜索：按照论文的 Local_Search 算法优化粒子
+        局部搜索：在粒子邻域中寻找支配当前解的邻居。
+        每次只替换一个节点，若改进则接受。
         """
-        particle_fitness = im.evaluate_objectives(self.graph, particle, node_preferences, num_information,
-                                                  node_to_community,
-                                                  total_nodes, total_communities)
+        particle_fitness = self.evaluator.evaluate(particle)
         improved = True
+
         while improved:
             improved = False
             for idx, node in enumerate(particle):
                 neighbors = list(self.graph.neighbors(node))
+                random.shuffle(neighbors)  # 避免顺序偏差
+
                 for neighbor in neighbors:
                     if neighbor not in particle:
                         candidate = particle[:]
                         candidate[idx] = neighbor
-                        candidate_fitness = im.evaluate_objectives(self.graph, candidate, node_preferences, num_information, node_to_community,
-                                             total_nodes, total_communities)
+                        candidate_fitness = self.evaluator.evaluate(candidate)
+
                         if ps.dominates(candidate_fitness, particle_fitness):
                             particle = candidate
                             particle_fitness = candidate_fitness
                             improved = True
-                            break
+                            break  # 局部改进立即接受
                 if improved:
-                    break
+                    break  # 每次只接受一次改进
+
         return particle, particle_fitness
 
-
-    def optimize(self, node_preferences, num_information, node_to_community, total_nodes, total_communities, max_iterations):
+    def optimize(self, max_iterations):
         """
         优化主循环
         """
         all_solutions = []
         final_HV = []
-        reference_point = [0, 0, 0]
+        reference_point = [0, 0]
         print("optimization start")
-        self.initialize_particles(node_preferences, num_information, node_to_community, total_nodes,
-                             total_communities)
+        self.initialize_particles()
 
         for iteration in range(max_iterations):
             new_solutions = []
@@ -160,9 +163,7 @@ class modpso:
                 self.update_position(i)
 
                 # 评估新位置的适应度
-                fitness = im.evaluate_objectives(self.graph, self.particles[i], node_preferences, num_information,
-                                                 node_to_community,
-                                                 total_nodes, total_communities)
+                fitness = self.evaluator.evaluate(self.particles[i])
                 # # 局部搜索优化
                 # self.particles[i] , fitness = self.local_search(self.particles[i], node_preferences, num_information, node_to_community, total_nodes,
                 #              total_communities)
@@ -181,7 +182,7 @@ class modpso:
             print(f"Iteration {iteration + 1}: Archive Size = {len(self.archive)}")
 
             # Calculate hypervolume for this iteration
-            final_hv_value = hv.calculate_hypervolume(self.archive, reference_point)
+            final_hv_value = ps.calculate_hypervolume(self.archive, reference_point)
             final_HV.append(final_hv_value)
 
             # Record iteration time

@@ -26,7 +26,9 @@ class communityStratifiedFMODGWO:
         self.evaluator = Evaluator(graph, node_to_comm, total_communities)
         self.perturb = PerturbationHandler(self.StructureMetrics)
         self.archive_mgr = ArchiveManager(self.archive_size)
-        self.leader_mgr = LeaderManager()
+        self.leader_mgr = LeaderManager(self.archive_mgr.calculate_crowding_distance)
+
+        # self.leader_mgr = LeaderManager()
         self.population = []
 
     def initialize_population(self):
@@ -147,13 +149,30 @@ class communityStratifiedFMODGWO:
 
         for t in range(max_iter):
             start_time = time.time()
+            # # === Step 0: 精英参与更新（加入种群一起演化）===
+            # elite_ratio = 0.1  # 保留比例（10%）
+            # elite_num = max(1, int(elite_ratio * self.pop_size))
+            # elite_pool = self.archive_mgr.archive
+            # elites = []
+            #
+            # if elite_pool:
+            #     # 选出 top-k 精英个体并深拷贝
+            #     elites = sorted(elite_pool, key=lambda w: -(w.Cost[0] + w.Cost[1]))[:elite_num]
+            #     self.population.extend(copy.deepcopy(elites))  # 与原始种群合并
+
             self.leader_mgr.ensure_leader_minimum(self.archive_mgr.archive, self.population)
             search_tendency = "global" if t < transition_point * max_iter else "local"
 
             for wolf in self.population:
-                alpha, beta, delta = self.leader_mgr.select_leaders_by_region(self.archive_mgr.get_fronts())
+                alpha, beta, delta, explorer = self.leader_mgr.select_leaders_with_tradeoff_explorer(
+                    self.archive_mgr.get_fronts())
+
+                # alpha, beta, delta = self.leader_mgr.select_leaders_by_region(self.archive_mgr.get_fronts())
                 # ✅ 使用并集代替三头交集，提升多样性、增强探索能力
-                base = wolf.Position & (alpha.Position | beta.Position | delta.Position)
+                # base = wolf.Position & (alpha.Position | beta.Position | delta.Position)
+                leader_union = alpha.Position | beta.Position | delta.Position | explorer.Position
+                base = wolf.Position & leader_union
+
                 # 控制 base 不超过预算的一定比例（后期 base 越大）
                 max_base_len = int(self.budget * (0.3 + 0.4 * (t / max_iter)))
                 if len(base) > max_base_len:

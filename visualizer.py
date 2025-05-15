@@ -8,6 +8,30 @@ class Visualizer:
         self.save_dir = save_dir
         os.makedirs(self.save_dir, exist_ok=True)
 
+    def _parse_archive(self, archive):
+        """
+        通用解解析函数，支持 GreyWolf 对象、(Position, Cost) 元组、字典结构。
+        返回格式统一为：list of dicts，包含 'Seed_Set' 和 'Cost'
+        """
+        parsed_results = []
+
+        for sol in archive:
+            if isinstance(sol, tuple) and len(sol) == 2:
+                seed_set, cost = sol
+            elif isinstance(sol, dict):
+                seed_set = sol.get("Position", [])
+                cost = sol.get("Cost", (None, None))
+            else:
+                seed_set = getattr(sol, 'Position', [])
+                cost = getattr(sol, 'Cost', (None, None))
+
+            parsed_results.append({
+                "Seed_Set": seed_set,
+                "Cost": cost
+            })
+
+        return parsed_results
+
     def save_and_plot_multiobj(self, all_runs_results, algo_name='Algorithm', dataset_name='dataset'):
         """
         保存数据并绘制图像（适用于多目标优化算法，如FMODGWO）
@@ -34,9 +58,11 @@ class Visualizer:
             final_hv = hv_values[-1]  # ✅ Use precomputed HV from final archive
             all_final_hv.append(final_hv)
 
-            for sol_idx, wolf in enumerate(archive):
-                cost = getattr(wolf, 'Cost', [None, None])
-                seed_set = getattr(wolf, 'Position', None)
+            parsed_archive = self._parse_archive(archive)
+
+            for sol_idx, item in enumerate(parsed_archive):
+                cost = item["Cost"]
+                seed_set = item["Seed_Set"]
                 all_final_costs.append([run_idx + 1, cost[0], cost[1]])
                 all_solutions_detailed.append({
                     'Run': run_idx + 1,
@@ -118,9 +144,6 @@ class Visualizer:
         plt.savefig(os.path.join(self.save_dir, f'{algo_name}_{dataset_name}_final_pareto_scatter.png'), dpi=600)
         plt.close()
 
-import matplotlib.pyplot as plt
-import os
-
 def plot_combined_pareto_front(multiobj_results, singleobj_results, save_dir, dataset_name, filename):
     """
     绘制包含多目标与单目标方法的 Pareto 前沿图，使用唯一 (颜色, marker) 组合区分每个算法。
@@ -136,8 +159,12 @@ def plot_combined_pareto_front(multiobj_results, singleobj_results, save_dir, da
     plt.figure(figsize=(10, 7))
 
     # 定义 marker 和颜色组合（循环使用也不重复）
-    marker_styles = ['o', 's', '^', 'D', 'v', 'P', '*', 'X']
-    colors = ['tab:purple', 'tab:red', 'tab:blue', 'tab:green', 'tab:orange', 'tab:pink', 'tab:gray', 'tab:cyan']
+    marker_styles = ['s', 'o', '^', 'D', 'v', 'P', '*', 'X', 'H', '+', 'x', '1']
+    colors = [
+        'tab:red', 'tab:purple', 'tab:blue', 'tab:green',
+        'tab:orange', 'tab:pink', 'tab:gray', 'tab:cyan',
+        'tab:brown', 'tab:olive', 'tab:lime', 'black'
+    ]
 
     # 构造算法 → 样式映射表
     algo_names = list(multiobj_results.keys()) + list(singleobj_results.keys())
@@ -149,10 +176,16 @@ def plot_combined_pareto_front(multiobj_results, singleobj_results, save_dir, da
     # === Multi-objective Algorithms ===
     for algo_name, runs in multiobj_results.items():
         style = style_map[algo_name]
-        for run in runs:
+        for i, run in enumerate(runs):
             archive = run['final_archive']
             for sol in archive:
-                cost = getattr(sol, 'Cost', [None, None])
+                if isinstance(sol, tuple) and len(sol) == 2:
+                    _, cost = sol
+                elif isinstance(sol, dict):
+                    cost = sol.get("Cost", [None, None])
+                else:
+                    cost = getattr(sol, 'Cost', [None, None])
+                label = algo_name if i == 0 else None  # ✅ 只在第一个 run 上加 label
                 plt.scatter(cost[0], cost[1], label=algo_name,
                             marker=style['marker'], color=style['color'], alpha=0.8)
 

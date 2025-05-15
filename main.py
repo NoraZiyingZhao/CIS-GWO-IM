@@ -4,7 +4,8 @@ import networkx as nx
 
 # from FMODGWO import *
 from communityStratifiedFMODGWO import *
-# from MObaseline import MODBA, MODPSO
+from MObaseline.MODBA import MODBA
+from MObaseline.MODPSO import MODPSO
 # from MObaseline.GFMOGWOpackage import GFMOGWO
 from baseline import degree, CELF, ClosenessCentr, eigenvectorcentr, pagerank, RANDOM, betweennesscentr
 from visualizer import *
@@ -34,7 +35,7 @@ def main():
     budget=10 #5,10,20 (<1k)
     print("Budget =", budget)
     pop_size = 100
-    archive_size = 30
+    archive_size = 100
     max_iter = 100
     runs = 2
 
@@ -110,38 +111,31 @@ def main():
 
         print(f"✅ Run {run_idx + 1} complete. Final HV: {hv_values[-1]:.4f}")
 
-        # --- 多目标算法1: FMODGWO ---
-        # optimizer = FMODGWO(graph, metrics, budget, pop_size, archive_size, node_to_comm, total_communities)
-        # archive, archive_costs_history, hv_values, times = optimizer.optimize(max_iter)
-        # run_result_fmodgwo = {
-        #     "final_archive": archive,
-        #     "archive_costs_history": archive_costs_history,
-        #     "hv_values": hv_values,
-        #     "times": times
-        # }
-        # all_runs_fmodgwo.append(run_result_fmodgwo)
+        # --- 多目标算法2: MODBA ---
+        optimizer_modba = MODBA(graph, budget, pop_size, archive_size, node_to_comm, total_communities)
+        archive, all_solutions, hv_values, times = optimizer_modba.optimize(max_iter)
 
-        # # --- 多目标算法2: MODBA ---
-        # optimizer_modba = MODBA(graph, metrics, budget, pop_size, archive_size, node_to_comm, total_communities)
-        # archive, archive_costs_history, hv_values, times = optimizer_modba.optimize(max_iter)
-        # run_result_modba = {
-        #     "final_archive": archive,
-        #     "archive_costs_history": archive_costs_history,
-        #     "hv_values": hv_values,
-        #     "times": times
-        # }
-        # all_runs_modba.append(run_result_modba)
-        #
-        # # --- 多目标算法3: MODPSO ---
-        # optimizer_modpso = MODPSO(graph, metrics, budget, pop_size, archive_size, node_to_comm, total_communities)
-        # archive, archive_costs_history, hv_values, times = optimizer_modpso.optimize(max_iter)
-        # run_result_modpso = {
-        #     "final_archive": archive,
-        #     "archive_costs_history": archive_costs_history,
-        #     "hv_values": hv_values,
-        #     "times": times
-        # }
-        # all_runs_modpso.append(run_result_modpso)
+        run_result_modba = {
+            "final_archive": archive,
+            "archive_costs_history": [fit for _, fit in all_solutions[0][0]],
+            "hv_values": hv_values,
+            "times": times
+        }
+        all_runs_modba.append(run_result_modba)
+
+        # --- 多目标算法3: MODPSO ---
+        optimizer_modpso = MODPSO(graph, budget, pop_size, archive_size, node_to_comm, total_communities)
+        all_solutions, hv_values = optimizer_modpso.optimize(max_iter)
+        archive = all_solutions[0][0]
+        times = all_solutions[0][1]
+
+        run_result_modpso = {
+            "final_archive": archive,
+            "archive_costs_history": [fit for _, fit in archive],
+            "hv_values": hv_values,
+            "times": times
+        }
+        all_runs_modpso.append(run_result_modpso)
 
         # --- 单目标基线: CELF ---
         celf_solutions = CELF.CELF_seed_selection(graph, budget, node_to_comm, total_communities)
@@ -191,7 +185,7 @@ def main():
     # Extract dataset name from edges file path
     network_name = os.path.basename(os.path.dirname(edges_file))  # e.g., "communityinfo-email"
     network_name = network_name.replace("communityinfo-", "")  # clean up if needed
-
+    #
     # Plot and save PF
     # Save results of single-objective algorithms to Excel
     save_single_objective_results_to_excel(single_obj_results, save_dir_single, network_name)
@@ -204,10 +198,11 @@ def main():
     visualizer_multi.save_and_plot_multiobj(all_runs_communityStratifiedFMODGWO, algo_name='communityStratifiedFMODGWO', dataset_name=network_name)
 
     # 保存 MODBA 多目标结果
-    # visualizer_multi.save_and_plot_multiobj(all_runs_modba, algo_name='MODBA')
+
+    visualizer_multi.save_and_plot_multiobj(all_runs_modba, algo_name='MODBA', dataset_name=network_name)
 
     # 保存 MODPSO 多目标结果
-    # visualizer_multi.save_and_plot_multiobj(all_runs_modpso, algo_name='MODPSO')
+    visualizer_multi.save_and_plot_multiobj(all_runs_modpso, algo_name='MODPSO', dataset_name=network_name)
 
     # 保存 GFMOGWO 多目标结果
     # visualizer_multi.save_and_plot_multiobj(all_runs_gfmogwo, algo_name='GFMOGWO')
@@ -215,8 +210,8 @@ def main():
     plot_combined_pareto_front(
         multiobj_results={
             'communityStratifiedFMODGWO': all_runs_communityStratifiedFMODGWO,
-            # 'MODBA': all_runs_modba,  # if used
-            # 'MODPSO': all_runs_modpso  # if used
+            'MODBA': all_runs_modba,  # if used
+            'MODPSO': all_runs_modpso  # if used
         },
         singleobj_results=single_obj_results,
         save_dir=save_dir_single,
